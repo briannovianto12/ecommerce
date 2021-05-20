@@ -1,48 +1,55 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+@extends('frontend.main_master')
+@section('content')
 
-        <x-jet-validation-errors class="mb-4" />
+<div class="breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-inner">
+			<ul class="list-inline list-unstyled">
+				<li><a href="{{ url('/') }}">Home</a></li>
+				<li class='active'>Login</li>
+			</ul>
+		</div><!-- /.breadcrumb-inner -->
+	</div><!-- /.container -->
+</div><!-- /.breadcrumb -->
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+<div class="body-content">
+	<div class="container">
+		<div class="sign-in-page">
+			<div class="row">
+				<!-- Sign-in -->			
+<div class="sign-in">
+	<h4 class="text-center ">Sign in</h4>
+	<p class="text-center ">Don't Have a B-Mart Account ? <a href="{{ route('register') }}"> Register</a></p>
+    <br>
+    <form method="POST" action="{{ isset($guard) ? url($guard.'/login') :  route('login') }}">
+        @csrf
+        <div class="col-md-6 col-md-6"style="float:none;margin:auto;">
+            <div class="form-group">
+                <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
+                <input type="email" id="email" name="email" class="form-control unicase-form-control text-input"  >
             </div>
-        @endif
-
-        <form method="POST" action="{{ isset($guard) ? url($guard.'/login') :  route('login') }}">
-            @csrf
-
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            <div class="form-group">
+                <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
+                <input type="password" id="password" name="password" class="form-control unicase-form-control text-input"  >
             </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+            <div class="radio outer-xs">
+                <a href="{{ route('password.request') }}" class="forgot-password pull-right">Forgot your Password?</a>
             </div>
+            <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
+        </div>
+	</form>					
+</div>
+<!-- Sign-in -->
+	
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+		</div><!-- /.row -->
+		</div><!-- /.sigin-in-->
+	</div><!-- /.container -->
+</div><!-- /.body-content -->
+<br><br>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
 
-                <x-jet-button class="ml-4">
-                    {{ __('Log in') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+
+
+
+@endsection
