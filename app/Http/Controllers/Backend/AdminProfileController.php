@@ -52,7 +52,7 @@ class AdminProfileController extends Controller
         return view('admin.admin_change_password');
     }
 
-    public function UpdateChangePassword(Request $request){
+    public function AdminPasswordUpdate(Request $request){
 
         $validateData = $request->validate([
             'oldpassword' => 'required',
