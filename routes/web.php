@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
 
@@ -47,3 +48,31 @@ Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user
 Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])->name('user.profile.store');
 Route::get('/user/change/password', [IndexController::class, 'UserChangePassword'])->name('user.change.password');
 Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdate'])->name('user.password.update');
+
+// Admin Category Routes
+
+Route::prefix('category')->group(function(){
+
+// All Category
+Route::get('/view', [CategoryController::class, 'CategoryView'])->name('all.category');
+
+Route::post('/store', [CategoryController::class, 'CategoryStore'])->name('category.store');
+
+Route::get('/edit/{id}', [CategoryController::class, 'CategoryEdit'])->name('category.edit');
+
+Route::post('/update/{id}', [CategoryController::class, 'CategoryUpdate'])->name('category.update');
+
+Route::get('/delete/{id}', [CategoryController::class, 'CategoryDelete'])->name('category.delete');
+
+// Sub Category
+Route::get('/sub/view', [CategoryController::class, 'SubCategoryView'])->name('all.subcategory');
+
+Route::post('/sub/store', [CategoryController::class, 'SubCategoryStore'])->name('subcategory.store');
+
+Route::get('/sub/edit/{id}', [CategoryController::class, 'SubCategoryEdit'])->name('subcategory.edit');
+
+Route::post('/sub/update', [CategoryController::class, 'SubCategoryUpdate'])->name('subcategory.update');
+
+Route::get('/sub/delete/{id}', [CategoryController::class, 'SubCategoryDelete'])->name('subcategory.delete');
+
+});
