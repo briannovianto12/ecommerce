@@ -9,7 +9,7 @@
     <section class="content">
 
     <!-- Basic Forms -->
-    <div class="box">
+    <div class="box bt-3 border-secondary">
         <div class="box-header with-border">
         <h4 class="box-title">Add Product</h4>
         </div>

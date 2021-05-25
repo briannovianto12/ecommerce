@@ -10,7 +10,7 @@
     <section class="content">
 
     <!-- Basic Forms -->
-    <div class="box">
+    <div class="box bt-3 border-secondary">
         <div class="box-header with-border">
         <h4 class="box-title">Edit Product</h4>
         </div>
@@ -315,7 +315,7 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-				<div class="box box-outline-info">
+				<div class="box bt-3 border-secondary">
 				  <div class="box-header">
 					<h4 class="box-title">Product Thumbnail Image<strong> Update</strong></h4>
 				  </div>
@@ -325,12 +325,12 @@
                         <input type="hidden" name="old_img" value="{{ $products->product_thumbnail }}">
                         <div class="row row-sm" style="margin-left:10px; margin-top : 20px;">
                             <div class="col-md-3" >
-                                <div class="card">
+                                <div class="card text-dark bg-light mb-3">
                                     <img src="{{ asset($products->product_thumbnail) }}" class="card-img-top" style="width: 300px; height: 200px;" id="mainThmb">
                                     <div class="card-body">
                                       <p class="card-text">
                                           <div class="form-group">
-                                            <label class="form-control-label">Change Image <span class="text-danger">*</span></label>
+                                            <h6>Change Image</h6>
                                             <input class="form-control" type="file" name="product_thumbnail" onChange="mainThumbUrl(this)">
                                             <img src="" id="mainThmb">
                                           </div>
@@ -351,21 +351,21 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-				<div class="box box-outline-info">
+				<div class="box bt-3 border-secondary">
 				  <div class="box-header">
 					<h4 class="box-title">Product Multiple Image<strong> Update</strong></h4>
 				  </div>
                   <form method="post" action="{{ route('update.product.image') }}" enctype="multipart/form-data">
                         @csrf
-                        <div class="row row-sm" style="margin-left:10px; margin-top : 20px;">
+                        <div class="row row-sm" style="margin-left:10px; margin-top : 20px; margin-right:10px;">
                             @foreach($multiImgs as $img)
                             <div class="col-md-3" >
-                                <div class="card">
+                                <div class="card text-dark bg-light mb-3">
                                     <img src="{{ asset($img->photo_name) }}" class="card-img-top" style="width: 300px; height: 200px;">
                                     <div class="card-body">
                                       <p class="card-text">
                                           <div class="form-group">
-                                            <label class="form-control-label">Change Image <span class="text-danger">*</span></label>
+                                            <h6>Change Image</h6>
                                             <input class="form-control" type="file" name="multi_images[ {{ $img->id }} ]">
                                           </div>
                                           <a href="{{ route('product.multiimg.delete',$img->id) }}" class="btn btn-sm btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i></a>
@@ -377,10 +377,27 @@
                             @endforeach
                         </div>
                         <div class="text-xs-right">
-                            <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Image" style="margin-left:20px; ">
+                            <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Image" style="margin-left:25px; ">
                         </div>
-                        <br><br>
+                        <br>
                   </form>
+                    <form method="post" action="{{ route('new.product.image') }}" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $products->id }}">
+                        <div class="col-md-6" style="margin-left: 10px;">
+                            <div class="form-group">
+                                <h4>Add New Multiple Images</h4>
+                                <div class="controls">
+                                    <input type="file" name="multi_images[]" class="form-control" multiple="" id="multiImg"> 
+                                    <div class="row" id="preview_img" style="margin-left: 10px; margin-top:5px;"></div> 
+                                </div>
+                            </div>
+                            <div class="text-xs-right">
+                                <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New Image">
+                            </div>
+                        </div>
+                    </form>
+                    <br><br>
 				</div>
 			 </div>
         </div>
@@ -466,8 +483,8 @@ $(function() {
                     var fRead = new FileReader(); //new filereader
                     fRead.onload = (function(file){ //trigger function on successful read
                     return function(e) {
-                        var img = $('<img/>').addClass('thumb').attr('src', e.target.result) .width(80)
-                    .height(80); //create image element 
+                        var img = $('<img/>').addClass('thumb').attr('src', e.target.result) .width(100)
+                    .height(100); //create image element 
                         $('#preview_img').append(img); //append image to output element
                     };
                     })(file);

@@ -255,4 +255,29 @@ class ProductController extends Controller
 
 	}
 
+	public function ProductNewImage(Request $request){
+		
+		$product_id = $request->id;
+		Product::findOrFail($product_id);
+		$images = MultiImage::where('product_id',$product_id)->get();
+		$images = $request->file('multi_images');
+        foreach ($images as $img){
+            $make_name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
+    	    Image::make($img)->resize(917,1000)->save('upload/products/multi_image/'.$make_name);
+    	    $uploadPath = 'upload/products/multi_image/'.$make_name;
+
+            MultiImage::insert([
+                'product_id' => $product_id,
+                'photo_name' => $uploadPath,
+                'created_at' => Carbon::now(), 
+            ]);
+        }
+        $notification = array(
+            'message' => 'Product Image Inserted Successfully',
+            'alert-type' => 'success'
+        );
+    
+        return redirect()->back()->with($notification);
+	}
+
 }
