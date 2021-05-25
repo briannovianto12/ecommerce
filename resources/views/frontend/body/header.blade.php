@@ -52,14 +52,14 @@
     <div class="main-header">
       <div class="container">
         <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-3 logo-holder"> 
+          <div class="col-xs-12 col-sm-12 col-md-2 logo-holder"> 
             <!-- ============================================================= LOGO ============================================================= -->
-            <div class="logo"> <a href="{{ url('/') }}"> <img src="{{ asset('frontend/assets/images/b-mart2.png') }}" alt="logo"> </a> </div>
+            <div class="logo" style="margin-bottom: 25px;"> <a href="{{ url('/') }}"> <img src="{{ asset('frontend/assets/images/bmart.png') }}" alt="logo" style="width: 4cm; height:1cm;"> </a> </div>
             <!-- /.logo --> 
             <!-- ============================================================= LOGO : END ============================================================= --> </div>
           <!-- /.logo-holder -->
           
-          <div class="col-xs-12 col-sm-12 col-md-7 top-search-holder"> 
+          <div class="col-xs-12 col-sm-12 col-md-8 top-search-holder"> 
             <!-- /.contact-row --> 
             <!-- ============================================================= SEARCH AREA ============================================================= -->
             <div class="search-area">
@@ -135,7 +135,7 @@
     <!-- /.main-header --> 
     
     <!-- ============================================== NAVBAR ============================================== -->
-    <div class="header-nav animate-dropdown">
+    {{-- <div class="header-nav animate-dropdown">
       <div class="container">
         <div class="yamm navbar navbar-default" role="navigation">
           <div class="navbar-header">
@@ -343,7 +343,7 @@
       </div>
       <!-- /.container-class --> 
       
-    </div>
+    </div> --}}
     <!-- /.header-nav --> 
     <!-- ============================================== NAVBAR : END ============================================== --> 
     

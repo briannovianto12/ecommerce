@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
 
@@ -75,4 +76,24 @@ Route::post('/sub/update', [CategoryController::class, 'SubCategoryUpdate'])->na
 
 Route::get('/sub/delete/{id}', [CategoryController::class, 'SubCategoryDelete'])->name('subcategory.delete');
 
+Route::get('/subcategory/ajax/{category_id}', [CategoryController::class, 'GetSubCategory']);
+
+});
+
+// Admin Products Routes
+Route::prefix('product')->group(function(){
+
+    Route::get('/add', [ProductController::class, 'AddProduct'])->name('add.product');
+    Route::post('/store', [ProductController::class, 'ProductStore'])->name('product.store');
+    Route::get('/manage', [ProductController::class, 'ManageProduct'])->name('manage.product');
+    Route::get('/edit/{id}', [ProductController::class, 'ProductEdit'])->name('product.edit');
+    Route::get('/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
+    Route::post('/update', [ProductController::class, 'ProductUpdate'])->name('product.update');
+    Route::post('/image/update', [ProductController::class, 'MultiImageUpdate'])->name('update.product.image');
+    Route::post('/thumbnail/update', [ProductController::class, 'ThumbnailImageUpdate'])->name('update.product.thumbnail');
+    Route::get('/multiimg/delete/{id}', [ProductController::class, 'MultiImageDelete'])->name('product.multiimg.delete');
+    Route::get('/inactive/{id}', [ProductController::class, 'ProductInactive'])->name('product.inactive');
+    Route::get('/active/{id}', [ProductController::class, 'ProductActive'])->name('product.active');
+
+    
 });

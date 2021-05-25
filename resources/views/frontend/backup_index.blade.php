@@ -1195,12 +1195,11 @@
               <!-- /.row --> 
             </div>
             <!-- /.info-boxes-inner --> 
-          </div>    
+            
           </div>
           <!-- /.info-boxes --> 
           <!-- ============================================== INFO BOXES : END ============================================== --> 
           <!-- ============================================== SCROLL TABS ============================================== -->
-          <div class="col-xs-12 col-sm-12 col-md-12 homebanner-holder"> 
           <div id="product-tabs-slider" class="scroll-tabs outer-top-vs wow fadeInUp">
               <div class="more-info-tab clearfix ">
                 <h3 class="new-product-title pull-left">New Products</h3>
@@ -2547,7 +2546,7 @@
           <!-- /.section --> 
           <!-- ============================================== FEATURED PRODUCTS : END ============================================== --> 
           <!-- ============================================== WIDE PRODUCTS ============================================== -->
-          {{-- <div class="wide-banners wow fadeInUp outer-bottom-xs">
+          <div class="wide-banners wow fadeInUp outer-bottom-xs">
             <div class="row">
               <div class="col-md-12">
                 <div class="wide-banner cnt-strip">
@@ -2569,7 +2568,7 @@
               
             </div>
             <!-- /.row --> 
-          </div> --}}
+          </div>
           <!-- /.wide-banners --> 
           <!-- ============================================== WIDE PRODUCTS : END ============================================== --> 
           <!-- ============================================== BEST SELLER ============================================== -->
@@ -3195,7 +3194,7 @@
           </section>
           <!-- /.section --> 
           <!-- ============================================== FEATURED PRODUCTS : END ============================================== --> 
-        </div> 
+          
         </div>
         <!-- /.homebanner-holder --> 
         <!-- ============================================== CONTENT : END ============================================== --> 
@@ -3208,7 +3207,7 @@
     </div>
     <!-- /.container --> 
   </div>
-<br><br>
+
 
 
 @endsection
