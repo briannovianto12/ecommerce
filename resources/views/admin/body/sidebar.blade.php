@@ -54,7 +54,20 @@
             <li class="{{ ($route == 'add.product')? 'active':'' }}"><a href="{{ route('add.product') }}"><i class="ti-more"></i>Add Products</a></li>
             <li class="{{ ($route == 'manage.product')? 'active':'' }}"><a href="{{ route('manage.product') }}"><i class="ti-more"></i>Manage Products</a></li>
           </ul>
-        </li> 		  
+        </li> 
+        
+        <li class="treeview {{ ($prefix == '/slider')? 'active':'' }}">
+          <a href="#">
+            <i data-feather="file"></i>
+            <span>Slider</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route == 'slider.view')? 'active':'' }}"><a href="{{ route('slider.view') }}"><i class="ti-more"></i>Manage Slider</a></li>
+          </ul>
+        </li> 
 		 
         <li class="header nav-small-cap">User Interface</li>
 		  
