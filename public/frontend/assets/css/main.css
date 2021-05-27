@@ -1219,7 +1219,7 @@ header{background:#157ed2}
   -moz-border-radius: 0px;
   border-radius: 0px;
   margin: 8px 0 0;
-  background:#fff;
+  width: 1025px;
   border-radius:2px;
 }
 .main-header .top-search-holder .search-area .search-field {
@@ -1274,7 +1274,6 @@ header{background:#157ed2}
 .main-header .top-search-holder .search-area .search-button {
   border-radius: 0px 3px 3px 0px;
   display: inline-block;
-  float: right;
   margin: 0px;
   padding: 12px 19px 12px;
   text-align: center;

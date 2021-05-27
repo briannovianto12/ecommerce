@@ -7,13 +7,23 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-
+use App\Models\Category;
+use App\Models\Slider;
+use App\Models\Product;
+use App\Models\MultiImage;
+use Illuminate\Support\Facades\Session;
 
 class IndexController extends Controller
 {
     public function index(){
 
-        return view('frontend.index');
+        $categories = Category::orderBy('category_name_en','ASC')->get();    
+        $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
+        $products = Product::where('status',1)->orderBy('id','DESC')->limit(10)->get();
+        $featured = Product::where('featured',1)->orderBy('id','DESC')->limit(10)->get();
+        $hot_deals = Product::where('hot_deals',1)->orderBy('id','DESC')->limit(10)->get();
+
+        return view('frontend.index',compact('categories','sliders','products','featured','hot_deals'));
     }
 
     public function UserLogout(){
@@ -77,6 +87,29 @@ class IndexController extends Controller
         }else{
             return redirect()->back();
         }
+    }
+
+    public function EnglishLanguage(){
+
+        session()->get('language');
+        session()->forget('language');
+        Session::put('language','english');
+        return redirect()->back();
+    }
+
+    public function IndonesiaLanguage(){
+
+        session()->get('language');
+        session()->forget('language');
+        Session::put('language','indonesia');
+        return redirect()->back();
+    }
+
+    public function ProductDetails($id,$slug){
+
+        $product = Product::findOrFail($id);
+        $multiImage = MultiImage::where('product_id',$id)->get();
+        return view('frontend.product.product_details',compact('product','multiImage'));
     }
 
 }

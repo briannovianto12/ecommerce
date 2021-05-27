@@ -33,12 +33,15 @@
 								</thead>
 								<tbody>
 									@foreach($products as $item)
+									@php
+										$total_rupiah = "Rp " . number_format($item->selling_price,2,',','.');
+									@endphp
 										<tr>
 											<td>{{ $item->product_code }}</td>
-											<td> <img src="{{ asset($item->product_thumbnail) }}" style="width: 60px; height:50px;"> </td>
+											<td> <img src="{{ asset($item->product_thumbnail) }}" style="width: 70px; height:60px;"> </td>
 											<td>{{ $item->product_name_en }}</td>
 											<td>{{ $item->product_name_ind }}</td>
-											<td>Rp. {{ $item->selling_price }}</td>
+											<td width=15%>{{ $total_rupiah }}</td>
 											<td>{{ $item->product_qty }}</td>
 											<td>
 												@if($item->status == 1)
@@ -47,7 +50,7 @@
 													<span class="badge badge-pill badge-danger">InActive</span>
 												@endif
 											</td>
-											<td width=25%>
+											<td width=21%>
 												<a href="{{ route('product.edit',$item->id) }}" class="btn btn-info" title="Edit Data"><i class="fas fa-pencil-alt"></i> </a>
 												<a href="{{ route('product.delete',$item->id) }}" class="btn btn-danger" title="Delete Data" id="delete">
 												<i class="fa fa-trash"></i></a>

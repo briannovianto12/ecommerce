@@ -9,7 +9,7 @@
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
 <link rel="icon" href="{{ asset('backend/images/B1.png') }}">
-<title>B-Mart</title>
+<title>@yield('title')</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">

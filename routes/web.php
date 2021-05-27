@@ -110,3 +110,14 @@ Route::prefix('slider')->group(function(){
     Route::get('/inactive/{id}', [SliderController::class, 'SliderInactive'])->name('slider.inactive');
     Route::get('/active/{id}', [SliderController::class, 'SliderActive'])->name('slider.active');
 });
+
+
+// Frontend All Routes //
+
+// Multi Language Route
+
+Route::get('/language/english', [IndexController::class, 'EnglishLanguage'])->name('english.language');
+Route::get('/language/indonesia', [IndexController::class, 'IndonesiaLanguage'])->name('indonesia.language');
+
+// Frontend Product Details
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
