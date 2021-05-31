@@ -105,7 +105,7 @@
                                     <div class="form-group">
                                         <h5>Product Tags English <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="product_tags_en" class="form-control" value="Lorem,Ipsum,Amet" data-role="tagsinput" required="">
+                                            <input type="text" name="product_tags_en" class="form-control" value="Wood,Paint" data-role="tagsinput" required="">
                                             @error('product_tags_en') 
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror 
@@ -116,7 +116,7 @@
                                     <div class="form-group">
                                         <h5>Product Tags Indonesia <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="product_tags_ind" class="form-control" value="Lorem,Ipsum,Amet" data-role="tagsinput" required="">
+                                            <input type="text" name="product_tags_ind" class="form-control" value="Kayu,Cat" data-role="tagsinput" required="">
                                             @error('product_tags_ind') 
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror 
@@ -274,20 +274,6 @@
                                         <fieldset>
                                             <input type="checkbox" id="checkbox_3" name="featured" value="1">
                                             <label for="checkbox_3">Featured Product</label>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="controls">
-                                        <fieldset>
-                                            <input type="checkbox" id="checkbox_4" name="special_offer" value="1">
-                                            <label for="checkbox_4">Special Offer</label>
-                                        </fieldset>
-                                        <fieldset>
-                                            <input type="checkbox" id="checkbox_5" name="special_deals" value="1">
-                                            <label for="checkbox_5">Special Deals</label>
                                         </fieldset>
                                     </div>
                                 </div>
