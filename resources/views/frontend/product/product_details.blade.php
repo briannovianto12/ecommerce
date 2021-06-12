@@ -109,24 +109,44 @@
                                             @endif
 										</div>
 									</div>
-
-									<div class="col-sm-6">
-										<div class="favorite-button m-t-10">
-											<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Wishlist" href="#">
-											    <i class="fa fa-heart"></i>
-											</a>
-											<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Add to Compare" href="#">
-											   <i class="fa fa-signal"></i>
-											</a>
-											<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="E-mail" href="#">
-											    <i class="fa fa-envelope"></i>
-											</a>
-										</div>
-									</div>
-
 								</div><!-- /.row -->
 							</div><!-- /.price-container -->
-
+							@if ($product->product_color_en == NULL && $product->product_size_en == NULL )
+							@else
+							<div class="price-container  ">
+								<div class="row">
+									@if ($product->product_color_en == NULL)
+									@else
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="info-title control-label">Color </label>
+											<select class="form-control btn dropdown-toggle btn-rounded btn-primary" style="">
+												<option selected="" disabled="">--Choose Color--</option>
+												@foreach($product_color_en as $color)
+												<option value="{{ $color }}">{{ ucwords($color)  }}</option>
+												@endforeach
+											</select>
+										</div>
+									</div>
+									@endif
+									@if ($product->product_size_en == NULL )
+									@else
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="info-title control-label">Size</label>
+											<select class="form-control btn dropdown-toggle btn-rounded btn-primary" style="">
+												<option selected="" disabled="">--Choose Size--</option>
+												@foreach($product_size_en as $size)
+												<option value="{{ $size }}">{{ ucwords($size) }}</option>
+												@endforeach
+											</select>
+										</div>
+									</div>
+									@endif
+								</div>
+							</div>
+							@endif
+							
 							<div class="quantity-container info-container">
 								<div class="row">
 									
@@ -170,7 +190,6 @@
 							<ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
 								<li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
 								<li><a data-toggle="tab" href="#review">REVIEW</a></li>
-								<li><a data-toggle="tab" href="#tags">TAGS</a></li>
 							</ul><!-- /.nav-tabs #product-tabs -->
 						</div>
 						<div class="col-sm-9">
@@ -282,39 +301,12 @@
 							        </div><!-- /.product-tab -->
 								</div><!-- /.tab-pane -->
 
-								<div id="tags" class="tab-pane">
-									<div class="product-tag">
-										
-										<h4 class="title">Product Tags</h4>
-										<form role="form" class="form-inline form-cnt">
-											<div class="form-container">
-									
-												<div class="form-group">
-													<label for="exampleInputTag">Add Your Tags: </label>
-													<input type="email" id="exampleInputTag" class="form-control txt">
-													
-
-												</div>
-
-												<button class="btn btn-upper btn-primary" type="submit">ADD TAGS</button>
-											</div><!-- /.form-container -->
-										</form><!-- /.form-cnt -->
-
-										<form role="form" class="form-inline form-cnt">
-											<div class="form-group">
-												<label>&nbsp;</label>
-												<span class="text col-md-offset-3">Use spaces to separate tags. Use single quotes (') for phrases.</span>
-											</div>
-										</form><!-- /.form-cnt -->
-
-									</div><!-- /.product-tab -->
-								</div><!-- /.tab-pane -->
-
 							</div><!-- /.tab-content -->
 						</div><!-- /.col -->
+
 					</div><!-- /.row -->
 				</div><!-- /.product-tabs -->
-			
+				<br><br><br><br>
 			</div><!-- /.col -->
 			<div class="clearfix"></div>
 		</div><!-- /.row -->

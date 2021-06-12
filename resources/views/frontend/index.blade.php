@@ -28,7 +28,7 @@ B-Mart
                           @foreach($subcategories as $subcategory)
                           <div class="col-sm-12">
                             <ul class="links list-unstyled">
-                              <li><a href="#">@if(session()->get('language') == 'indonesia' ) {{ $subcategory->subcategory_name_ind }} @else {{ $subcategory->subcategory_name_en }} @endif </a></li>
+                              <li><a href="{{ url('subcategory/product/'.$subcategory->id.'/'.$subcategory->subcategory_slug_en ) }}">@if(session()->get('language') == 'indonesia' ) {{ $subcategory->subcategory_name_ind }} @else {{ $subcategory->subcategory_name_en }} @endif </a></li>
                             </ul>
                           </div>
                           @endforeach
@@ -1150,6 +1150,76 @@ B-Mart
             <!-- /.home-owl-carousel --> 
           </section>
 
+          <section class="section wow fadeInUp new-arriavls">
+            <h3 class="section-title">Hot Deals</h3>
+            <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+              @foreach($hot_deals as $product)
+              <div class="item item-carousel">
+                <div class="products">
+                  <div class="product">
+                    <div class="product-image">
+                      <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}"><img  src="{{ asset($product->product_thumbnail) }}" alt=""></a> </div>
+                      <!-- /.image -->
+                      @php
+                        $total_rupiah = "Rp " . number_format($product->selling_price,2,',','.');
+                        $amount = $product->selling_price - $product->discount_price;
+                        $total_amount = "Rp " . number_format($amount,2,',','.');
+                        $discount = (($product->selling_price - $amount)/$product->selling_price) * 100;
+                      @endphp
+                      <div>
+                        @if ($product->discount_price == NULL)
+                          <div class="tag new"><span>New</span></div>
+                        @else
+                          <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                        @endif
+                      </div>
+                      
+                    </div>
+                    <!-- /.product-image -->
+                    
+                    <div class="product-info text-left">
+                      <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">
+                        @if(session()->get('language') == 'indonesia' ) {{ $product->product_name_ind }} @else {{ $product->product_name_en }} @endif</a></h3>
+                      <div class="rating rateit-small"></div>
+                      <div class="description"></div>
+
+                      @if ($product->discount_price == NULL)
+                        <div class="product-price"> <span class="price"> {{ $total_rupiah }} </span></div>
+                      @else
+                      <div class="product-price"> <span class="price">{{ $total_amount }} </span> <span class="price-before-discount">{{ $total_rupiah }}</span> </div>
+                      @endif
+                      
+                      <!-- /.product-price --> 
+                      
+                    </div>
+                    <!-- /.product-info -->
+                    <div class="cart clearfix animate-effect">
+                      <div class="action">
+                        <ul class="list-unstyled">
+                          <li class="add-cart-button btn-group">
+                            <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+                            <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                          </li>
+                          <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                          <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                        </ul>
+                      </div>
+                      <!-- /.action --> 
+                    </div>
+                    <!-- /.cart --> 
+                  </div>
+                  <!-- /.product --> 
+                  
+                </div>
+                <!-- /.products --> 
+              </div>
+              <!-- /.item -->
+              @endforeach  
+              
+              
+            </div>
+            <!-- /.home-owl-carousel --> 
+          </section>
 
             <!-- ============================================== Skip Product 0 ============================================== -->
             <section class="section featured-product wow fadeInUp">
@@ -1159,6 +1229,444 @@ B-Mart
               <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
                 
                 @foreach($skip_product_0 as $product)
+                <div class="item item-carousel">
+                  <div class="products">
+                    <div class="product">
+                      <div class="product-image">
+                        <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}"><img  src="{{ asset($product->product_thumbnail) }}" alt=""></a> </div>
+                        <!-- /.image -->
+                        @php
+                          $total_rupiah = "Rp " . number_format($product->selling_price,2,',','.');
+                          $amount = $product->selling_price - $product->discount_price;
+                          $total_amount = "Rp " . number_format($amount,2,',','.');
+                          $discount = (($product->selling_price - $amount)/$product->selling_price) * 100;
+                        @endphp
+                        <div>
+                          @if ($product->discount_price == NULL)
+                            <div class="tag new"><span>New</span></div>
+                          @else
+                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                          @endif
+                        </div>
+                        
+                      </div>
+                      <!-- /.product-image -->
+                      
+                      <div class="product-info text-left">
+                        <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">
+                          @if(session()->get('language') == 'indonesia' ) {{ $product->product_name_ind }} @else {{ $product->product_name_en }} @endif</a></h3>
+                        <div class="rating rateit-small"></div>
+                        <div class="description"></div>
+  
+                        @if ($product->discount_price == NULL)
+                          <div class="product-price"> <span class="price"> {{ $total_rupiah }} </span></div>
+                        @else
+                        <div class="product-price"> <span class="price">{{ $total_amount }} </span> <span class="price-before-discount">{{ $total_rupiah }}</span> </div>
+                        @endif
+                        
+                        <!-- /.product-price --> 
+                        
+                      </div>
+                      <!-- /.product-info -->
+                      <div class="cart clearfix animate-effect">
+                        <div class="action">
+                          <ul class="list-unstyled">
+                            <li class="add-cart-button btn-group">
+                              <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+                              <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                            </li>
+                            <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                            <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                          </ul>
+                        </div>
+                        <!-- /.action --> 
+                      </div>
+                      <!-- /.cart --> 
+                    </div>
+                    <!-- /.product --> 
+                    
+                  </div>
+                  <!-- /.products --> 
+                </div>
+                <!-- /.item -->
+                @endforeach  
+              </div>
+              <!-- /.home-owl-carousel --> 
+            </section>
+
+            <!-- ==============================================  Product Building Material ============================================== -->
+            <section class="section featured-product wow fadeInUp">
+              <h3 class="section-title">
+                @if(session()->get('language') == 'indonesia' ) {{ $skip_category_6->category_name_ind }} @else {{ $skip_category_6->category_name_en }} @endif
+                </h3>
+              <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                
+                @foreach($skip_product_6 as $product)
+                <div class="item item-carousel">
+                  <div class="products">
+                    <div class="product">
+                      <div class="product-image">
+                        <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}"><img  src="{{ asset($product->product_thumbnail) }}" alt=""></a> </div>
+                        <!-- /.image -->
+                        @php
+                          $total_rupiah = "Rp " . number_format($product->selling_price,2,',','.');
+                          $amount = $product->selling_price - $product->discount_price;
+                          $total_amount = "Rp " . number_format($amount,2,',','.');
+                          $discount = (($product->selling_price - $amount)/$product->selling_price) * 100;
+                        @endphp
+                        <div>
+                          @if ($product->discount_price == NULL)
+                            <div class="tag new"><span>New</span></div>
+                          @else
+                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                          @endif
+                        </div>
+                        
+                      </div>
+                      <!-- /.product-image -->
+                      
+                      <div class="product-info text-left">
+                        <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">
+                          @if(session()->get('language') == 'indonesia' ) {{ $product->product_name_ind }} @else {{ $product->product_name_en }} @endif</a></h3>
+                        <div class="rating rateit-small"></div>
+                        <div class="description"></div>
+  
+                        @if ($product->discount_price == NULL)
+                          <div class="product-price"> <span class="price"> {{ $total_rupiah }} </span></div>
+                        @else
+                        <div class="product-price"> <span class="price">{{ $total_amount }} </span> <span class="price-before-discount">{{ $total_rupiah }}</span> </div>
+                        @endif
+                        
+                        <!-- /.product-price --> 
+                        
+                      </div>
+                      <!-- /.product-info -->
+                      <div class="cart clearfix animate-effect">
+                        <div class="action">
+                          <ul class="list-unstyled">
+                            <li class="add-cart-button btn-group">
+                              <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+                              <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                            </li>
+                            <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                            <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                          </ul>
+                        </div>
+                        <!-- /.action --> 
+                      </div>
+                      <!-- /.cart --> 
+                    </div>
+                    <!-- /.product --> 
+                    
+                  </div>
+                  <!-- /.products --> 
+                </div>
+                <!-- /.item -->
+                @endforeach  
+              </div>
+              <!-- /.home-owl-carousel --> 
+            </section>
+
+            <!-- ============================================== Product Doors ============================================== -->
+            <section class="section featured-product wow fadeInUp">
+              <h3 class="section-title">
+                @if(session()->get('language') == 'indonesia' ) {{ $skip_category_5->category_name_ind }} @else {{ $skip_category_5->category_name_en }} @endif
+                </h3>
+              <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                
+                @foreach($skip_product_5 as $product)
+                <div class="item item-carousel">
+                  <div class="products">
+                    <div class="product">
+                      <div class="product-image">
+                        <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}"><img  src="{{ asset($product->product_thumbnail) }}" alt=""></a> </div>
+                        <!-- /.image -->
+                        @php
+                          $total_rupiah = "Rp " . number_format($product->selling_price,2,',','.');
+                          $amount = $product->selling_price - $product->discount_price;
+                          $total_amount = "Rp " . number_format($amount,2,',','.');
+                          $discount = (($product->selling_price - $amount)/$product->selling_price) * 100;
+                        @endphp
+                        <div>
+                          @if ($product->discount_price == NULL)
+                            <div class="tag new"><span>New</span></div>
+                          @else
+                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                          @endif
+                        </div>
+                        
+                      </div>
+                      <!-- /.product-image -->
+                      
+                      <div class="product-info text-left">
+                        <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">
+                          @if(session()->get('language') == 'indonesia' ) {{ $product->product_name_ind }} @else {{ $product->product_name_en }} @endif</a></h3>
+                        <div class="rating rateit-small"></div>
+                        <div class="description"></div>
+  
+                        @if ($product->discount_price == NULL)
+                          <div class="product-price"> <span class="price"> {{ $total_rupiah }} </span></div>
+                        @else
+                        <div class="product-price"> <span class="price">{{ $total_amount }} </span> <span class="price-before-discount">{{ $total_rupiah }}</span> </div>
+                        @endif
+                        
+                        <!-- /.product-price --> 
+                        
+                      </div>
+                      <!-- /.product-info -->
+                      <div class="cart clearfix animate-effect">
+                        <div class="action">
+                          <ul class="list-unstyled">
+                            <li class="add-cart-button btn-group">
+                              <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+                              <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                            </li>
+                            <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                            <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                          </ul>
+                        </div>
+                        <!-- /.action --> 
+                      </div>
+                      <!-- /.cart --> 
+                    </div>
+                    <!-- /.product --> 
+                    
+                  </div>
+                  <!-- /.products --> 
+                </div>
+                <!-- /.item -->
+                @endforeach  
+              </div>
+              <!-- /.home-owl-carousel --> 
+            </section>
+
+            <!-- ============================================== Skip Product 3 ============================================== -->
+            <section class="section featured-product wow fadeInUp">
+              <h3 class="section-title">
+                @if(session()->get('language') == 'indonesia' ) {{ $skip_category_3->category_name_ind }} @else {{ $skip_category_3->category_name_en }} @endif
+                </h3>
+              <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                
+                @foreach($skip_product_3 as $product)
+                <div class="item item-carousel">
+                  <div class="products">
+                    <div class="product">
+                      <div class="product-image">
+                        <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}"><img  src="{{ asset($product->product_thumbnail) }}" alt=""></a> </div>
+                        <!-- /.image -->
+                        @php
+                          $total_rupiah = "Rp " . number_format($product->selling_price,2,',','.');
+                          $amount = $product->selling_price - $product->discount_price;
+                          $total_amount = "Rp " . number_format($amount,2,',','.');
+                          $discount = (($product->selling_price - $amount)/$product->selling_price) * 100;
+                        @endphp
+                        <div>
+                          @if ($product->discount_price == NULL)
+                            <div class="tag new"><span>New</span></div>
+                          @else
+                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                          @endif
+                        </div>
+                        
+                      </div>
+                      <!-- /.product-image -->
+                      
+                      <div class="product-info text-left">
+                        <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">
+                          @if(session()->get('language') == 'indonesia' ) {{ $product->product_name_ind }} @else {{ $product->product_name_en }} @endif</a></h3>
+                        <div class="rating rateit-small"></div>
+                        <div class="description"></div>
+  
+                        @if ($product->discount_price == NULL)
+                          <div class="product-price"> <span class="price"> {{ $total_rupiah }} </span></div>
+                        @else
+                        <div class="product-price"> <span class="price">{{ $total_amount }} </span> <span class="price-before-discount">{{ $total_rupiah }}</span> </div>
+                        @endif
+                        
+                        <!-- /.product-price --> 
+                        
+                      </div>
+                      <!-- /.product-info -->
+                      <div class="cart clearfix animate-effect">
+                        <div class="action">
+                          <ul class="list-unstyled">
+                            <li class="add-cart-button btn-group">
+                              <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+                              <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                            </li>
+                            <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                            <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                          </ul>
+                        </div>
+                        <!-- /.action --> 
+                      </div>
+                      <!-- /.cart --> 
+                    </div>
+                    <!-- /.product --> 
+                    
+                  </div>
+                  <!-- /.products --> 
+                </div>
+                <!-- /.item -->
+                @endforeach  
+              </div>
+              <!-- /.home-owl-carousel --> 
+            </section>
+
+            <!-- ============================================== Skip Product 4 ============================================== -->
+            <section class="section featured-product wow fadeInUp">
+              <h3 class="section-title">
+                @if(session()->get('language') == 'indonesia' ) {{ $skip_category_4->category_name_ind }} @else {{ $skip_category_4->category_name_en }} @endif
+                </h3>
+              <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                
+                @foreach($skip_product_4 as $product)
+                <div class="item item-carousel">
+                  <div class="products">
+                    <div class="product">
+                      <div class="product-image">
+                        <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}"><img  src="{{ asset($product->product_thumbnail) }}" alt=""></a> </div>
+                        <!-- /.image -->
+                        @php
+                          $total_rupiah = "Rp " . number_format($product->selling_price,2,',','.');
+                          $amount = $product->selling_price - $product->discount_price;
+                          $total_amount = "Rp " . number_format($amount,2,',','.');
+                          $discount = (($product->selling_price - $amount)/$product->selling_price) * 100;
+                        @endphp
+                        <div>
+                          @if ($product->discount_price == NULL)
+                            <div class="tag new"><span>New</span></div>
+                          @else
+                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                          @endif
+                        </div>
+                        
+                      </div>
+                      <!-- /.product-image -->
+                      
+                      <div class="product-info text-left">
+                        <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">
+                          @if(session()->get('language') == 'indonesia' ) {{ $product->product_name_ind }} @else {{ $product->product_name_en }} @endif</a></h3>
+                        <div class="rating rateit-small"></div>
+                        <div class="description"></div>
+  
+                        @if ($product->discount_price == NULL)
+                          <div class="product-price"> <span class="price"> {{ $total_rupiah }} </span></div>
+                        @else
+                        <div class="product-price"> <span class="price">{{ $total_amount }} </span> <span class="price-before-discount">{{ $total_rupiah }}</span> </div>
+                        @endif
+                        
+                        <!-- /.product-price --> 
+                        
+                      </div>
+                      <!-- /.product-info -->
+                      <div class="cart clearfix animate-effect">
+                        <div class="action">
+                          <ul class="list-unstyled">
+                            <li class="add-cart-button btn-group">
+                              <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+                              <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                            </li>
+                            <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                            <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                          </ul>
+                        </div>
+                        <!-- /.action --> 
+                      </div>
+                      <!-- /.cart --> 
+                    </div>
+                    <!-- /.product --> 
+                    
+                  </div>
+                  <!-- /.products --> 
+                </div>
+                <!-- /.item -->
+                @endforeach  
+              </div>
+              <!-- /.home-owl-carousel --> 
+            </section>
+
+            <!-- ============================================== Product Paint ============================================== -->
+            <section class="section featured-product wow fadeInUp">
+              <h3 class="section-title">
+                @if(session()->get('language') == 'indonesia' ) {{ $skip_category_2->category_name_ind }} @else {{ $skip_category_2->category_name_en }} @endif
+                </h3>
+              <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                
+                @foreach($skip_product_2 as $product)
+                <div class="item item-carousel">
+                  <div class="products">
+                    <div class="product">
+                      <div class="product-image">
+                        <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}"><img  src="{{ asset($product->product_thumbnail) }}" alt=""></a> </div>
+                        <!-- /.image -->
+                        @php
+                          $total_rupiah = "Rp " . number_format($product->selling_price,2,',','.');
+                          $amount = $product->selling_price - $product->discount_price;
+                          $total_amount = "Rp " . number_format($amount,2,',','.');
+                          $discount = (($product->selling_price - $amount)/$product->selling_price) * 100;
+                        @endphp
+                        <div>
+                          @if ($product->discount_price == NULL)
+                            <div class="tag new"><span>New</span></div>
+                          @else
+                            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                          @endif
+                        </div>
+                        
+                      </div>
+                      <!-- /.product-image -->
+                      
+                      <div class="product-info text-left">
+                        <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">
+                          @if(session()->get('language') == 'indonesia' ) {{ $product->product_name_ind }} @else {{ $product->product_name_en }} @endif</a></h3>
+                        <div class="rating rateit-small"></div>
+                        <div class="description"></div>
+  
+                        @if ($product->discount_price == NULL)
+                          <div class="product-price"> <span class="price"> {{ $total_rupiah }} </span></div>
+                        @else
+                        <div class="product-price"> <span class="price">{{ $total_amount }} </span> <span class="price-before-discount">{{ $total_rupiah }}</span> </div>
+                        @endif
+                        
+                        <!-- /.product-price --> 
+                        
+                      </div>
+                      <!-- /.product-info -->
+                      <div class="cart clearfix animate-effect">
+                        <div class="action">
+                          <ul class="list-unstyled">
+                            <li class="add-cart-button btn-group">
+                              <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
+                              <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                            </li>
+                            <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                            <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                          </ul>
+                        </div>
+                        <!-- /.action --> 
+                      </div>
+                      <!-- /.cart --> 
+                    </div>
+                    <!-- /.product --> 
+                    
+                  </div>
+                  <!-- /.products --> 
+                </div>
+                <!-- /.item -->
+                @endforeach  
+              </div>
+              <!-- /.home-owl-carousel --> 
+            </section>
+
+            <!-- ============================================== Product Tools ============================================== -->
+            <section class="section featured-product wow fadeInUp">
+              <h3 class="section-title">
+                @if(session()->get('language') == 'indonesia' ) {{ $skip_category_1->category_name_ind }} @else {{ $skip_category_1->category_name_en }} @endif
+                </h3>
+              <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                
+                @foreach($skip_product_1 as $product)
                 <div class="item item-carousel">
                   <div class="products">
                     <div class="product">
@@ -1617,76 +2125,7 @@ B-Mart
           <!-- ============================================== BLOG SLIDER : END ============================================== --> 
           
           <!-- ============================================== HOTDEALS PRODUCTS ============================================== -->
-          <section class="section wow fadeInUp new-arriavls">
-            <h3 class="section-title">Hot Deals</h3>
-            <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-              @foreach($hot_deals as $product)
-              <div class="item item-carousel">
-                <div class="products">
-                  <div class="product">
-                    <div class="product-image">
-                      <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}"><img  src="{{ asset($product->product_thumbnail) }}" alt=""></a> </div>
-                      <!-- /.image -->
-                      @php
-                        $total_rupiah = "Rp " . number_format($product->selling_price,2,',','.');
-                        $amount = $product->selling_price - $product->discount_price;
-                        $total_amount = "Rp " . number_format($amount,2,',','.');
-                        $discount = (($product->selling_price - $amount)/$product->selling_price) * 100;
-                      @endphp
-                      <div>
-                        @if ($product->discount_price == NULL)
-                          <div class="tag new"><span>New</span></div>
-                        @else
-                          <div class="tag hot"><span>{{ round($discount) }}%</span></div>
-                        @endif
-                      </div>
-                      
-                    </div>
-                    <!-- /.product-image -->
-                    
-                    <div class="product-info text-left">
-                      <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">
-                        @if(session()->get('language') == 'indonesia' ) {{ $product->product_name_ind }} @else {{ $product->product_name_en }} @endif</a></h3>
-                      <div class="rating rateit-small"></div>
-                      <div class="description"></div>
 
-                      @if ($product->discount_price == NULL)
-                        <div class="product-price"> <span class="price"> {{ $total_rupiah }} </span></div>
-                      @else
-                      <div class="product-price"> <span class="price">{{ $total_amount }} </span> <span class="price-before-discount">{{ $total_rupiah }}</span> </div>
-                      @endif
-                      
-                      <!-- /.product-price --> 
-                      
-                    </div>
-                    <!-- /.product-info -->
-                    <div class="cart clearfix animate-effect">
-                      <div class="action">
-                        <ul class="list-unstyled">
-                          <li class="add-cart-button btn-group">
-                            <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
-                            <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                          </li>
-                          <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                          <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
-                        </ul>
-                      </div>
-                      <!-- /.action --> 
-                    </div>
-                    <!-- /.cart --> 
-                  </div>
-                  <!-- /.product --> 
-                  
-                </div>
-                <!-- /.products --> 
-              </div>
-              <!-- /.item -->
-              @endforeach  
-              
-              
-            </div>
-            <!-- /.home-owl-carousel --> 
-          </section>
           <!-- /.section --> 
           <!-- ============================================== FEATURED PRODUCTS : END ============================================== --> 
         </div> 

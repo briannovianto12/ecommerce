@@ -105,8 +105,8 @@
                                     </div>
                                 </div>
                             </div> {{-- End Row 3  --}}
-                            <div class="row"> {{-- Row 4  --}}
-                                <div class="col-md-6">
+                            {{-- <div class="row"> Row 4  --}}
+                                {{-- <div class="col-md-6">
                                     <div class="form-group">
                                         <h5>Product Tags English <span class="text-danger">*</span></h5>
                                         <div class="controls">
@@ -127,14 +127,14 @@
                                             @enderror 
                                         </div>
                                     </div>
-                                </div>
-                            </div> {{-- End Row 4  --}}
+                                </div> --}}
+                            {{-- </div> End Row 4  --}}
                             <div class="row"> {{-- Row 5  --}}
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <h5>Product Size English <span class="text-danger">*</span></h5>
+                                        <h5>Product Size English</h5>
                                         <div class="controls">
-                                            <input type="text" name="product_size_en" class="form-control" value="{{ $products->product_size_en }}" data-role="tagsinput" required="">
+                                            <input type="text" name="product_size_en" class="form-control" value="{{ $products->product_size_en }}" data-role="tagsinput" >
                                             @error('product_size_en') 
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror 
@@ -143,9 +143,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <h5>Product Size Indonesia <span class="text-danger">*</span></h5>
+                                        <h5>Product Size Indonesia</h5>
                                         <div class="controls">
-                                            <input type="text" name="product_size_ind" class="form-control" value="{{ $products->product_size_ind }}" data-role="tagsinput" required="">
+                                            <input type="text" name="product_size_ind" class="form-control" value="{{ $products->product_size_ind }}" data-role="tagsinput" >
                                             @error('product_size_ind') 
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror 
@@ -156,9 +156,9 @@
                             <div class="row"> {{-- Row 6  --}}
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <h5>Product Color English <span class="text-danger">*</span></h5>
+                                        <h5>Product Color English </h5>
                                         <div class="controls">
-                                            <input type="text" name="product_color_en" class="form-control" value="{{ $products->product_color_en }}" data-role="tagsinput" required="">
+                                            <input type="text" name="product_color_en" class="form-control" value="{{ $products->product_color_en }}" data-role="tagsinput" >
                                             @error('product_color_en') 
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror 
@@ -167,9 +167,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <h5>Product Color Indonesia <span class="text-danger">*</span></h5>
+                                        <h5>Product Color Indonesia </h5>
                                         <div class="controls">
-                                            <input type="text" name="product_color_ind" class="form-control" value="{{ $products->product_color_ind }}" data-role="tagsinput" required="">
+                                            <input type="text" name="product_color_ind" class="form-control" value="{{ $products->product_color_ind }}" data-role="tagsinput" >
                                             @error('product_color_ind') 
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror 
@@ -191,7 +191,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <h5>Product Discount <span class="text-danger">*</span></h5>
+                                        <h5>Product Discount</h5>
                                         <div class="controls">
                                             <input type="text" name="discount_price" class="form-control" value="{{ $products->discount_price }}"> 
                                             @error('discount_price') 

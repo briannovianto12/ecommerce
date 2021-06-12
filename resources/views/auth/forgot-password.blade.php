@@ -6,7 +6,7 @@
 		<div class="breadcrumb-inner">
 			<ul class="list-inline list-unstyled">
 				<li><a href="{{ url('/') }}">Home</a></li>
-				<li class='active'>Forget Password</li>
+				<li class='active'>Forgot Password</li>
 			</ul>
 		</div><!-- /.breadcrumb-inner -->
 	</div><!-- /.container -->
@@ -18,7 +18,7 @@
 			<div class="row">
 				<!-- Sign-in -->			
 <div class="sign-in">
-	<h4 class="text-center ">Forget Password</h4>
+	<h4 class="text-center ">Forgot Password</h4>
     <br>
     <form method="POST" action="{{ route('password.email') }}">
         @csrf

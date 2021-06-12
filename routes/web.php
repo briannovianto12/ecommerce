@@ -121,3 +121,6 @@ Route::get('/language/indonesia', [IndexController::class, 'IndonesiaLanguage'])
 
 // Frontend Product Details
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+
+// Subcategory sidebar
+Route::get('/subcategory/product/{subcat_id}/{slug}', [IndexController::class, 'SubCategorySidebar']);

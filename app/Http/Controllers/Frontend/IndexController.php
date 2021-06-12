@@ -23,11 +23,30 @@ class IndexController extends Controller
         $featured = Product::where('featured',1)->orderBy('id','DESC')->limit(10)->get();
         $hot_deals = Product::where('hot_deals',1)->where('discount_price','!=',NULL)->orderBy('id','DESC')->limit(10)->get();
         
-        $skip_category_0 = Category::skip(2)->first();
-        $skip_product_0 = Product::where('status',1)->where('category_id',$skip_category_0->id)->orderBy('id','DESC')->get();
+        $skip_category_0 = Category::skip(0)->first();
+        $skip_product_0 = Product::where('status',1)->where('category_id',$skip_category_0->id)->orderBy('id','DESC')->limit(10)->get();
+
+        $skip_category_1 = Category::skip(1)->first();
+        $skip_product_1 = Product::where('status',1)->where('category_id',$skip_category_1->id)->orderBy('id','DESC')->limit(10)->get();
+
+        $skip_category_2 = Category::skip(2)->first();
+        $skip_product_2 = Product::where('status',1)->where('category_id',$skip_category_2->id)->orderBy('id','DESC')->limit(10)->get();
+
+        $skip_category_3 = Category::skip(3)->first();
+        $skip_product_3 = Product::where('status',1)->where('category_id',$skip_category_3->id)->orderBy('id','DESC')->limit(10)->get();
+
+        $skip_category_4 = Category::skip(4)->first();
+        $skip_product_4 = Product::where('status',1)->where('category_id',$skip_category_4->id)->orderBy('id','DESC')->limit(10)->get();
+
+        $skip_category_5 = Category::skip(5)->first();
+        $skip_product_5 = Product::where('status',1)->where('category_id',$skip_category_5->id)->orderBy('id','DESC')->limit(10)->get();
+
+        $skip_category_6 = Category::skip(6)->first();
+        $skip_product_6 = Product::where('status',1)->where('category_id',$skip_category_6->id)->orderBy('id','DESC')->limit(10)->get();
 
 
-        return view('frontend.index',compact('categories','sliders','products','featured','hot_deals','skip_category_0','skip_product_0'));
+
+        return view('frontend.index',compact('categories','sliders','products','featured','hot_deals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','skip_category_2','skip_product_2','skip_category_3','skip_product_3','skip_category_4','skip_product_4','skip_category_5','skip_product_5','skip_category_6','skip_product_6'));
     }
 
     public function UserLogout(){
@@ -112,8 +131,28 @@ class IndexController extends Controller
     public function ProductDetails($id,$slug){
 
         $product = Product::findOrFail($id);
+        
+        $color_en = $product->product_color_en;
+        $product_color_en = explode(',',$color_en);
+
+        $color_ind = $product->product_color_ind;
+        $product_color_ind = explode(',',$color_ind);
+
+        $size_en = $product->product_size_en;
+        $product_size_en = explode(',',$size_en);
+
+        $size_ind = $product->product_size_ind;
+        $product_size_ind = explode(',',$size_ind);
+        
         $multiImage = MultiImage::where('product_id',$id)->get();
-        return view('frontend.product.product_details',compact('product','multiImage'));
+        return view('frontend.product.product_details',compact('product','multiImage','product_color_en','product_color_ind','product_size_en','product_size_ind'));
+    }
+
+    public function SubCategorySidebar($subcat_id,$slug){
+
+        $products = Product::where('status',1)->where('subcategory_id',$subcat_id)->orderBy('id','DESC')->paginate(9);
+        $categories = Category::orderBy('category_name_en','ASC')->get();
+        return view('frontend.product.subcategory_view',compact('products','categories'));
     }
 
 }

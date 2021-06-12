@@ -39,8 +39,6 @@ class ProductController extends Controller
       	'product_code' => $request->product_code,
 
       	'product_qty' => $request->product_qty,
-      	'product_tags_en' => $request->product_tags_en,
-      	'product_tags_ind' => $request->product_tags_ind,
       	'product_size_en' => $request->product_size_en,
       	'product_size_ind' => $request->product_size_ind,
       	'product_color_en' => $request->product_color_en,
@@ -55,8 +53,6 @@ class ProductController extends Controller
 
       	'hot_deals' => $request->hot_deals,
       	'featured' => $request->featured,
-      	'special_offer' => $request->special_offer,
-      	'special_deals' => $request->special_deals,
 
       	'product_thumbnail' => $save_url,
       	'status' => 1,
@@ -115,8 +111,6 @@ class ProductController extends Controller
 			'product_code' => $request->product_code,
   
 			'product_qty' => $request->product_qty,
-			'product_tags_en' => $request->product_tags_en,
-			'product_tags_ind' => $request->product_tags_ind,
 			'product_size_en' => $request->product_size_en,
 			'product_size_ind' => $request->product_size_ind,
 			'product_color_en' => $request->product_color_en,
@@ -131,8 +125,6 @@ class ProductController extends Controller
   
 			'hot_deals' => $request->hot_deals,
 			'featured' => $request->featured,
-			'special_offer' => $request->special_offer,
-			'special_deals' => $request->special_deals,
 			'status' => 1,
 			'created_at' => Carbon::now(),   	 
   
