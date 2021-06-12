@@ -95,9 +95,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <h5>Product Quantity <span class="text-danger">*</span></h5>
+                                        <h5>Product Quantity</h5>
                                         <div class="controls">
-                                            <input type="text" name="product_qty" class="form-control" required="" value="{{ $products->product_qty }}"> 
+                                            <input type="text" name="product_qty" class="form-control" value="{{ $products->product_qty }}"> 
                                             @error('product_qty') 
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror 

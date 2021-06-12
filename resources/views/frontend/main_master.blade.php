@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="description" content="">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
@@ -65,6 +66,9 @@
 <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script> 
 <script src="{{ asset('frontend/assets/js/scripts.js') }}"></script>
 
+<script src="{{ asset('frontend/assets/js/autoNumeric.js') }}"></script>
+
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
   <script>
@@ -89,6 +93,134 @@
   }
   @endif 
   </script>
+
+    <!--Add to Cart Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel"><strong><span id="pname"></span></strong></h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card" style="width: 18rem;">
+                <img src="" class="card-img-top" alt="..." style="height: 200px; width: 200px; margin-left:20px; margin-top:15px;" id="pimage">
+              </div>
+            </div>
+            <br>
+            <div class="col-md-4">
+              <ul class="list-group">
+                <li class="list-group-item">Product Price: <strong class="text-danger">Rp.<span id="pprice"></span></strong>
+                  
+                  <del id="oldprice">Rp.</del>
+                </li>
+                <li class="list-group-item">Category : <strong id="pcategory"></strong> </li>
+                <li class="list-group-item">Stock: <span class="badge badge-pill badge-success" id="avaiable" style="background: green; color: white;"></span> 
+                  <span class="badge badge-pill badge-danger" id="stockout" style="background: red; color: white;"></span> 
+              </ul>
+            </div>
+            <div class="col-md-4" >
+              <div class="form-group" id="colorArea">
+                <label for="exampleFormControlSelect1">Choose Color</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="color">
+                  
+                </select>
+              </div>
+              <div class="form-group" id="sizeArea">
+                <label for="exampleFormControlSelect1">Choose Size</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="size">
+                  
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Quantity</label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" value="1" min="1">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary ">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $.ajaxSetup({
+      headers:{
+        'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+      }
+    })
+    // Product view with modal
+    function productView(id){
+      // alert(id)
+      $.ajax({
+        type: 'GET',
+        url: '/product/view/modal/'+id,
+        dataType:'json',
+        success:function(data){
+          $('#pname').text(data.product.product_name_en);
+          $('#price').text(data.product.selling_price);
+          $('#pcategory').text(data.product.category.category_name_en);
+          $('#pimage').attr('src','/'+data.product.product_thumbnail);
+          
+          // Product Price 
+          if (data.product.discount_price == null) {
+                $('#pprice').text('');
+                $('#oldprice').text('');
+                $('#pprice').text(data.product.selling_price);
+                $('#pprice').autoNumeric('init');
+            }else{
+                $('#pprice').text(data.product.selling_price -  data.product.discount_price);
+                $('#oldprice').text(data.product.selling_price);
+                $('#pprice').autoNumeric('init');
+                $('#oldprice').autoNumeric('init');
+                
+            } // end prodcut price 
+            // Start Stock opiton
+            if (data.product.product_qty > 0) {
+                $('#avaiable').text('');
+                $('#stockout').text('');
+                $('#avaiable').text('avaiable');
+            }else{
+                $('#avaiable').text('');
+                $('#stockout').text('');
+                $('#stockout').text('out of stock');
+            } // end Stock Option 
+
+          // Color
+          $('select[name="color"]').empty();        
+          $.each(data.color,function(key,value){
+              $('select[name="color"]').append('<option value=" '+value+' ">'+value+' </option>')
+              if (data.color == "") {
+                  $('#colorArea').hide();
+              }else{
+                  $('#colorArea').show();
+              }
+          }) // end color
+
+          // Size
+          $('select[name="size"]').empty();        
+          $.each(data.size,function(key,value){
+              $('select[name="size"]').append('<option value=" '+value+' ">'+value+' </option>')
+              if (data.size == "") {
+                  $('#sizeArea').hide();
+              }else{
+                  $('#sizeArea').show();
+              }
+          }) // end size
+        }
+      })
+    }
+
+  </script>
+
 </body>
 </html>
 
