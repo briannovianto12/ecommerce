@@ -56,7 +56,7 @@
 </div><!-- /.gallery-holder -->        			
 					<div class='col-sm-6 col-md-7 product-info-block'>
 						<div class="product-info">
-							<h1 class="name">
+							<h1 class="name" id="pname">
                                 @if(session()->get('language') == 'indonesia' ) {{ $product->product_name_ind }} @else {{ $product->product_name_en }} @endif
                             </h1>
 							
@@ -120,7 +120,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label class="info-title control-label">Color </label>
-											<select class="form-control btn dropdown-toggle btn-rounded btn-primary" style="">
+											<select class="form-control btn dropdown-toggle btn-rounded btn-primary" style="" id="color">
 												<option selected="" disabled="">--Choose Color--</option>
 												@foreach($product_color_en as $color)
 												<option value="{{ $color }}">{{ ucwords($color)  }}</option>
@@ -134,7 +134,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label class="info-title control-label">Size</label>
-											<select class="form-control btn dropdown-toggle btn-rounded btn-primary" style="">
+											<select class="form-control btn dropdown-toggle btn-rounded btn-primary" style="" id="size">
 												<option selected="" disabled="">--Choose Size--</option>
 												@foreach($product_size_en as $size)
 												<option value="{{ $size }}">{{ ucwords($size) }}</option>
@@ -151,23 +151,19 @@
 								<div class="row">
 									
 									<div class="col-sm-2">
-										<span class="label">Qty :</span>
+										<span class="label">Quantity :</span>
 									</div>
 									
 									<div class="col-sm-2">
 										<div class="cart-quantity">
 											<div class="quant-input">
-								                <div class="arrows">
-								                  <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-								                  <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
-								                </div>
-								                <input type="text" value="1">
+								                <input type="number" id="qty" value="1" min="1">
 							              </div>
 							            </div>
 									</div>
-
-									<div class="col-sm-7">
-										<a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+									<input type="hidden" id="product_id" value="{{ $product->id }}" min="1">
+									<div class="col-sm-8">
+										<button type="submit" onclick="addToCart()" class="btn btn-primary"  style="margin-left: 260px;"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</button>
 									</div>
 
 									

@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Models\User;
 
 
@@ -128,3 +129,25 @@ Route::get('/subcategory/product/{subcat_id}/{slug}', [IndexController::class, '
 // Product view Modal Ajax
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
 
+
+// Add to Cart Store Data
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']); 
+
+// Get Data from mini cart
+Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
+
+// Remove mini cart
+Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+
+
+Route::group(['prefix'=>'user','middleware' => ['user','auth'],'namespace'=>'User'],
+function(){
+
+    Route::get('/mycart', [CartController::class, 'MyCart'])->name('mycart');
+    Route::get('/get-cart-product', [CartController::class, 'GetCartProduct']);
+    Route::get('/cart-remove/{rowId}', [CartController::class, 'RemoveCart']);
+    Route::get('/cart-increment/{rowId}', [CartController::class, 'CartIncrement']);
+    Route::get('/cart-decrement/{rowId}', [CartController::class, 'CartDecrement']);
+    Route::get('/total-calculation', [CartController::class, 'TotalCalculation']);
+
+});
