@@ -8,7 +8,11 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\PaymentController;
+use App\Http\Controllers\Frontend\UserController;
+
 use App\Models\User;
+
 
 
 Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
@@ -131,7 +135,7 @@ Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax
 
 
 // Add to Cart Store Data
-Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']); 
+Route::post('/cart/data/store/{id}', [IndexController::class, 'AddToCart']); 
 
 // Get Data from mini cart
 Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
@@ -149,5 +153,19 @@ function(){
     Route::get('/cart-increment/{rowId}', [CartController::class, 'CartIncrement']);
     Route::get('/cart-decrement/{rowId}', [CartController::class, 'CartDecrement']);
     Route::get('/total-calculation', [CartController::class, 'TotalCalculation']);
+
+    // Checkout
+    Route::get('/checkout', [CartController::class, 'CreateCheckout'])->name('checkout');
+    Route::post('/checkout/store', [CartController::class, 'CheckoutStore'])->name('checkout.store');
+    
+    // Payment Stripe Method
+    Route::post('/stripe/order', [PaymentController::class, 'PaymentOrder'])->name('stripe.order');
+
+    // Cash Payment Method
+    Route::post('/cash/order', [PaymentController::class, 'CashOrder'])->name('cash.order');
+
+    Route::get('/my/orders', [UserController::class, 'MyOrder'])->name('my.orders');
+    Route::get('/order_details/{order_id}', [UserController::class, 'OrderDetails']);
+
 
 });

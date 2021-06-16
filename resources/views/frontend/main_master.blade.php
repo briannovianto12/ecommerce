@@ -34,7 +34,8 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-
+{{-- Stripe Payment --}}
+<script src="https://js.stripe.com/v3/"></script>
 </head>
 <body class="cnt-home">
 <!-- ============================================== HEADER ============================================== -->
@@ -193,7 +194,7 @@
             }else{
                 $('#avaiable').text('');
                 $('#stockout').text('');
-                $('#stockout').text('out of stock');
+                $('#stockout').text('empty');
             } // end Stock Option 
 
           // Color

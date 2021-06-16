@@ -6,47 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Auth;
 
 class CartController extends Controller
 {
-    public function AddToCart(Request $request, $id){
-
-    	$product = Product::findOrFail($id);
-
-    	if ($product->discount_price == NULL) {
-    		Cart::add([
-    			'id' => $id, 
-    			'name' => $request->product_name, 
-    			'qty' => $request->quantity, 
-    			'price' => $product->selling_price,
-    			'weight' => 1, 
-    			'options' => [
-    				'image' => $product->product_thumbnail,
-    				'color' => $request->color,
-    				'size' => $request->size,
-    			],
-    		]);
-
-    		return response()->json(['success' => 'Successfully Added on Your Cart']);
-
-    	}else{
-
-    		Cart::add([
-    			'id' => $id, 
-    			'name' => $request->product_name, 
-    			'qty' => $request->quantity, 
-    			'price' => $product->selling_price - $product->discount_price,
-    			'weight' => 1, 
-    			'options' => [
-    				'image' => $product->product_thumbnail,
-    				'color' => $request->color,
-    				'size' => $request->size,
-    			],
-    		]);
-    		return response()->json(['success' => 'Successfully Added on Your Cart']);
-    	}
-
-    } // end mehtod 
 
     public function AddMiniCart(){
 
@@ -111,9 +74,64 @@ class CartController extends Controller
     }
 
     public function TotalCalculation(){
-            return response()->json(array(
-                'total' => Cart::total(),
-            )); 
+        return response()->json(array(
+            'total' => Cart::total(),
+        )); 
+    }
+
+    public function CreateCheckout(){
+
+        if (Auth::check()) {
+            if (Cart::total() > 0) {
+                
+                $carts = Cart::content();
+    	        $cartQty = Cart::count();
+    	        $cartTotal = Cart::total();
+
+                return view('frontend.cart.checkout_view',compact('carts','cartQty','cartTotal'));
+
+
+            }else{
+
+                $notification = array(
+                    'message' => 'Your Cart is Empty',
+                    'alert-type' => 'error'
+                );
+        
+                return redirect()->to('/')->with($notification);
+            }
+
+        }else{
+
+            $notification = array(
+                'message' => 'You Need to Login First',
+                'alert-type' => 'error'
+            );
+    
+            return redirect()->route('login')->with($notification);
+    
+        }
+
+    }
+
+    public function CheckoutStore(Request $request){
+        
+        $data = array();
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+        $data['phone'] = $request->phone;
+        $data['address'] = $request->address;
+        $data['city'] = $request->city;
+        $data['province'] = $request->province;
+        $data['post_code'] = $request->post_code;
+        $data['notes'] = $request->notes;
+        $cartTotal = Cart::total();
+
+        if ($request->payment_method == 'stripe') {
+            return view('frontend.payment.stripe',compact('data','cartTotal'));
+        }else{
+            return view('frontend.payment.cash',compact('data','cartTotal'));;
+        }
     }
 
 }
