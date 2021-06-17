@@ -58,9 +58,9 @@
 						<div class="product-info">
 							<h1 class="name" id="pname">
                                 @if(session()->get('language') == 'indonesia' ) {{ $product->product_name_ind }} @else {{ $product->product_name_en }} @endif
-                            </h1>
+                            </h1><hr>
 							
-							<div class="rating-reviews m-t-20">
+							{{-- <div class="rating-reviews m-t-20">
 								<div class="row">
 									<div class="col-sm-3">
 										<div class="rating rateit-small"></div>
@@ -71,18 +71,18 @@
 										</div>
 									</div>
 								</div><!-- /.row -->		
-							</div><!-- /.rating-reviews -->
+							</div><!-- /.rating-reviews --> --}}
 
 							<div class="stock-container info-container m-t-10">
 								<div class="row">
 									<div class="col-sm-2">
 										<div class="stock-box">
-											<span class="label">Availability :</span>
+											<span class="label"><strong>Available Stock : </strong></span>
 										</div>	
 									</div>
 									<div class="col-sm-9">
 										<div class="stock-box">
-											<span class="value">In Stock</span>
+											<span class="value">{{ $product->product_qty }}</span>
 										</div>	
 									</div>
 								</div><!-- /.row -->	
@@ -163,7 +163,12 @@
 									</div>
 									<input type="hidden" id="product_id" value="{{ $product->id }}" min="1">
 									<div class="col-sm-8">
+										@if ($product->product_qty == 0 )
+										<button type="submit" disabled="" class="btn btn-primary"  style="margin-left: 260px;"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</button>
+										@else
 										<button type="submit" onclick="addToCart()" class="btn btn-primary"  style="margin-left: 260px;"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</button>
+										@endif
+										
 									</div>
 
 									

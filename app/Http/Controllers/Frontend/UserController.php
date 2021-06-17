@@ -24,7 +24,7 @@ class UserController extends Controller
 
     public function OrderDetails($order_id){
 
-    	$order = Order::where('id',$order_id)->where('user_id',Auth::id())->first();
+    	$order = Order::with('user')->where('id',$order_id)->where('user_id',Auth::id())->first();
     	$orderItem = OrderItem::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
     	return view('frontend.profile.order_details',compact('order','orderItem'));
 

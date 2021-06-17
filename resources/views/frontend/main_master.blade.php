@@ -147,7 +147,12 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <input type="hidden" id="product_id">
-          <button type="submit" class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+          
+            {{-- <button type="submit" disabled class="btn btn-primary">Add to Cart</button> --}}
+          
+            <button type="submit" class="btn btn-primary" onclick="addToCart()">Add to Cart</button> 
+         
+          
         </div>
       </div>
     </div>

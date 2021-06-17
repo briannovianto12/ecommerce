@@ -1,5 +1,9 @@
 @extends('frontend.main_master')
 @section('content')
+@section('title')
+Order Detail Page 
+@endsection
+
 
 <div class="body-content">
 	<div class="container">
@@ -94,7 +98,7 @@
 					</tr>
 		
 					 <tr>
-					  <th> Invoice  : </th>
+					  <th> Invoice No  : </th>
 					   <th class="text-danger"> {{ $order->invoice_no }} </th>
 					</tr>
 		
@@ -132,7 +136,7 @@
 					<tbody>
 		
 					  <tr style="background: #e2e2e2; border: 1px solid black;">
-						<td class="col-md-1">
+						<td class="col-md-2" style="text-align:center;">
 						  <label for=""> Image</label>
 						</td>
 		
@@ -153,7 +157,7 @@
 						  <label for=""> Quantity </label>
 						</td>
 		
-						<td class="col-md-5">
+						<td class="col-md-4">
 						  <label for=""> Price </label>
 						</td>
 		
@@ -162,8 +166,8 @@
 		
 					  @foreach($orderItem as $item)
 			   <tr style="border: 1px solid black;">
-						<td class="col-md-1">
-						  <label for=""><img src="{{ asset($item->product->product_thumbnail) }}" height="50px;" width="50px;"> </label>
+						<td class="col-md-2" style="text-align:center;">
+						  <label for=""><img src="{{ asset($item->product->product_thumbnail) }}" height="100px;" width="100px;"> </label>
 						</td>
 		
 						<td class="col-md-3">
@@ -182,7 +186,7 @@
 						  <label for=""> {{ $item->qty }}</label>
 						</td>
 		
-				  		<td class="col-md-5">
+				  		<td class="col-md-4">
 						  <label for=""> @currency($item->price) ( @currency($item->price * $item->qty) ) </label>
 						</td>
 		

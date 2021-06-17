@@ -16,6 +16,7 @@ use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Http\Requests\LoginRequest;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -109,4 +110,24 @@ class AdminController extends Controller
 
         return app(LogoutResponse::class);
     }
+
+
+    public function UserView(){
+		$users = User::latest()->get();
+		return view('backend.user.all_user',compact('users'));
+	}
+
+    public function UserDelete($id){
+
+		$users = User::findOrFail($id);
+		User::findOrFail($id)->delete();
+
+		$notification = array(
+            'message' => 'User Deleted Successfully',
+            'alert-type' => 'success'
+        );
+    
+        return redirect()->back()->with($notification);
+
+	}
 }

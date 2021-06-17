@@ -1,5 +1,8 @@
 @extends('frontend.main_master')
 @section('content')
+@section('title')
+My Profile Page 
+@endsection
 
 <div class="body-content">
     <div class="container">
