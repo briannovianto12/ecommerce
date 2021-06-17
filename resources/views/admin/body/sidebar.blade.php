@@ -68,8 +68,8 @@
             <li class="{{ ($route == 'slider.view')? 'active':'' }}"><a href="{{ route('slider.view') }}"><i class="ti-more"></i>Manage Slider</a></li>
           </ul>
         </li> 
-		 
-        <li class="header nav-small-cap">User Interface</li>
+{{-- 		 
+        <li class="header nav-small-cap">User Interface</li> --}}
 
         <li class="treeview {{ ($prefix == '/orders')? 'active':'' }}">
           <a href="#">
@@ -89,7 +89,20 @@
             <li class="{{ ($route == 'cancel.orders')? 'active':'' }}"><a href="{{ route('cancel.orders') }}"><i class="ti-more"></i> Cancel Orders</a></li>
           </ul>
         </li> 
-		
+
+        <li class="treeview {{ ($prefix == '/review')?'active':'' }}  ">
+          <a href="#">
+            <i data-feather="file"></i>
+            <span>Review </span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+        <li class="{{ ($route == 'all.review')? 'active':'' }}"><a href="{{ route('all.review') }}"><i class="ti-more"></i>All Review</a></li>
+        </ul>
+      </li> 
+
         <li class="treeview {{ ($prefix == '/alluser')?'active':'' }}  ">
           <a href="#">
             <i data-feather="file"></i>
@@ -99,12 +112,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-        <li class="{{ ($route == 'all.users')? 'active':'' }}"><a href="{{ route('all.users') }}"><i class="ti-more"></i>All Users</a></li>
-
-
+          <li class="{{ ($route == 'all.users')? 'active':'' }}"><a href="{{ route('all.users') }}"><i class="ti-more"></i>All Users</a></li>
           </ul>
         </li> 
-	  
+
+        
 		  
       </ul>
     </section>

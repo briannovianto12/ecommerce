@@ -197,3 +197,14 @@ Route::prefix('alluser')->group(function(){
     
     
     });
+
+// Frontend Product Review
+Route::post('/review/product', [UserController::class, 'ReviewProduct'])->name('review.product');
+
+Route::prefix('review')->group(function(){
+
+    Route::get('/view', [UserController::class, 'ReviewView'])->name('all.review');
+    // Route::get('/delete/{id}', [AdminController::class, 'UserDelete'])->name('user.delete');
+    
+    
+});
