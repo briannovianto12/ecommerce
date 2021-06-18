@@ -35,8 +35,9 @@ class UserController extends Controller
 
         $product = $request->product_id;
         $request->validate([
-
+            'summary' => 'required',
             'comment' => 'required',
+            'rating' => 'rating',
         ]);
         
         Review::insert([
@@ -44,6 +45,8 @@ class UserController extends Controller
             'user_id' => Auth::id(),
             'summary' => $request->summary,
             'comment' => $request->comment,
+            'rating' => $request->rating,
+            'status' => 1,
             'created_at' => Carbon::now(),
         ]);
 
