@@ -23,24 +23,26 @@ Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
 
 // Admin Routes
 
-Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
-    return view('admin.index');
-})->name('dashboard');
+Route::middleware(['auth:admin'])->group(function(){
+
+    Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
+        return view('admin.index');
+    })->name('dashboard')->middleware('auth:admin');
 
 
-Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+    Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 
-Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
+    Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
 
-Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
+    Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
 
-Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
+    Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
 
-Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
+    Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
 
-Route::post('/admin/password/update', [AdminProfileController::class, 'AdminPasswordUpdate'])->name('admin.password.update');
+    Route::post('/admin/password/update', [AdminProfileController::class, 'AdminPasswordUpdate'])->name('admin.password.update');
 
-
+});
 
 // User Routes
 
@@ -206,5 +208,18 @@ Route::prefix('review')->group(function(){
     Route::get('/view', [UserController::class, 'ReviewView'])->name('all.review');
     // Route::get('/delete/{id}', [AdminController::class, 'UserDelete'])->name('user.delete');
     
+});
+
+// Admin Role Routes
+Route::prefix('adminrole')->group(function(){
+
+    Route::get('/all', [AdminController::class, 'SellerView'])->name('all.seller');
+    Route::get('/add', [AdminController::class, 'AddSellerRole'])->name('add.seller');
+    Route::post('/store', [AdminController::class, 'SellerStore'])->name('seller.store');
+    Route::get('/edit/{id}', [AdminController::class, 'SellerEdit'])->name('seller.edit');
+    Route::post('/update', [AdminController::class, 'SellerUpdate'])->name('seller.update');
+    Route::get('/delete/{id}', [AdminController::class, 'SellerDelete'])->name('seller.delete');
     
 });
+
+

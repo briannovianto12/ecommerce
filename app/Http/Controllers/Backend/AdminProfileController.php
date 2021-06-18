@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use Auth;
 use Illuminate\Support\Facades\Hash;
+use Image;
+use Carbon\Carbon;
 
 
 class AdminProfileController extends Controller
@@ -14,30 +16,40 @@ class AdminProfileController extends Controller
     
     public function AdminProfile(){
 
-        $adminData = Admin::find(1);
+        $id = Auth::user()->id;
+		$adminData = Admin::find($id);
         return view('admin.admin_profile_view',compact('adminData'));
 
     }
 
     public function AdminProfileEdit(){
-        $editData = Admin::find(1);
+
+        $id = Auth::user()->id;
+		$editData = Admin::find($id);
         return view('admin.admin_profile_edit',compact('editData'));
     }
 
     public function AdminProfileStore(Request $request){
-        $data = Admin::find(1);
-        $data->name = $request->name;
-        $data->email = $request->email;
+
+        $admin_id = $request->id;
+    	$old_img = $request->old_image;
 
         if($request->file('profile_photo_path')){
-            $file = $request->file('profile_photo_path');
-            @unlink(public_path('upload/admin_images/'.$data->profile_photo_path));
-            $filename = date('YmdHi').$file->getClientOriginalName(); //generate uniqe name
-            $file->move(public_path('upload/admin_images'),$filename);
-            $data['profile_photo_path'] = $filename;
-        }
-        $data->save();
+            unlink($old_img);
+            $image = $request->file('profile_photo_path');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(225,225)->save('upload/admin_images/'.$name_gen);
+            $save_url = 'upload/admin_images/'.$name_gen;
 
+        }
+        Admin::findOrFail($admin_id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'profile_photo_path' => $save_url,
+            'updated_at' => Carbon::now(),
+    
+        ]);
+        
         $notification = array(
             'message' => 'Admin Profile Updated Succesfully',
             'alert-type' => 'success'
@@ -58,10 +70,10 @@ class AdminProfileController extends Controller
             'oldpassword' => 'required',
             'password' => 'required|confirmed',
         ]);
-
-        $hashedPassword = Admin::find(1)->password;
+        
+        $hashedPassword = Auth::user()->password;
         if (Hash::check($request->oldpassword,$hashedPassword)) {
-            $admin = Admin::find(1);
+            $admin = Admin::find(Auth::id());
             $admin->password = Hash::make($request->password);
             $admin->save();
             Auth::logout();

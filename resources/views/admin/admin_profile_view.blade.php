@@ -17,12 +17,12 @@
                 <div class="widget-user-image">
 
                     {{-- condition admin image profile --}}
-                  <img class="rounded-circle" src="{{ (!empty($adminData->profile_photo_path))? url('upload/admin_images/'.$adminData->profile_photo_path):url('upload/no_image.jpg') }}" alt="User Avatar">
+                  <img class="rounded-circle" src="{{ asset($adminData->profile_photo_path) }}" alt="User Avatar">
 
 
                 </div>
                 <div class="box-footer">
-                  <div class="row">
+                  {{-- <div class="row">
                     <div class="col-sm-4">
                       <div class="description-block">
                         <h5 class="description-header">12K</h5>
@@ -47,7 +47,7 @@
                       <!-- /.description-block -->
                     </div>
                     <!-- /.col -->
-                  </div>
+                  </div> --}}
                   <!-- /.row -->
                 </div>
               </div>

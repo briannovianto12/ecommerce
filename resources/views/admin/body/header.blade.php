@@ -14,7 +14,7 @@
 					<i class="nav-link-icon mdi mdi-crop-free"></i>
 			    </a>
 			</li>			
-			<li class="btn-group nav-item d-none d-xl-inline-block">
+			{{-- <li class="btn-group nav-item d-none d-xl-inline-block">
 				<a href="#" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="">
 					<i class="ti-check-box"></i>
 			    </a>
@@ -23,7 +23,7 @@
 				<a href="calendar.html" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="">
 					<i class="ti-calendar"></i>
 			    </a>
-			</li>
+			</li> --}}
 		  </ul>
 	  </div>
 		
@@ -36,7 +36,7 @@
 			  </div>
 		  </li>			
 		  <!-- Notifications -->
-		  <li class="dropdown notifications-menu">
+		  {{-- <li class="dropdown notifications-menu">
 			<a href="#" class="waves-effect waves-light rounded dropdown-toggle" data-toggle="dropdown" title="Notifications">
 			  <i class="ti-bell"></i>
 			</a>
@@ -99,14 +99,16 @@
 				  <a href="#">View all</a>
 			  </li>
 			</ul>
-		  </li>	
+		  </li>	 --}}
 		  
 		  @php
-		  $adminData = DB::table('admins')->first();
+		//   $id = Auth::user()->id;
+		//   $adminData = Admin::find($id);
+		$adminData = DB::table('admins')->first();
 		  @endphp
 
 	      <!-- User Account-->
-          <li class="dropdown user user-menu">	
+          {{-- <li class="dropdown user user-menu">	
 			<a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0" data-toggle="dropdown" title="User">
 				<img src="{{ (!empty($adminData->profile_photo_path))? url('upload/admin_images/'.$adminData->profile_photo_path):url('upload/no_image.jpg') }}" alt="">
 			</a>
@@ -119,10 +121,19 @@
 				 <a class="dropdown-item" href="{{ route('admin.logout') }}"><i class="ti-lock text-muted mr-2"></i> Logout</a>
 			  </li>
 			</ul>
-          </li>	
-		  <li>
-              <a href="#" data-toggle="control-sidebar" title="Setting" class="waves-effect waves-light">
+          </li>	 --}}
+		  <li class="">
+              <a href="#" data-toggle="dropdown" title="User" >
 			  	<i class="ti-settings"></i>
+				  <ul class="dropdown-menu animated flipInX">
+					<li class="user-body">
+					   <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="ti-user text-muted mr-2"></i> Profile</a>
+					   <a class="dropdown-item" href="{{ route('admin.change.password') }}"><i class="ti-wallet text-muted mr-2"></i>Change Password</a>
+					   
+					   <div class="dropdown-divider"></div>
+					   <a class="dropdown-item" href="{{ route('admin.logout') }}"><i class="ti-lock text-muted mr-2"></i> Logout</a>
+					</li>
+				  </ul>
 			  </a>
           </li>
 			
