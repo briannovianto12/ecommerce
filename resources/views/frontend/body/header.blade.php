@@ -63,8 +63,11 @@
             <!-- /.contact-row --> 
             <!-- ============================================================= SEARCH AREA ============================================================= -->
             <div class="search-area">
-                  <input class="search-field" placeholder="Search here..." />
-                  <a class="search-button" href="#" ></a> 
+              <form method="post" action="{{ route('product.search') }}">
+                @csrf
+                  <input class="search-field" name="search" placeholder="Search here..." />
+                  <button class="search-button" type="submit"></button>
+              </form>
             </div>
             <!-- /.search-area --> 
             <!-- ============================================================= SEARCH AREA : END ============================================================= --> </div>

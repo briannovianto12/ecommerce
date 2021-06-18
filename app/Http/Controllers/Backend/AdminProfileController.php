@@ -40,22 +40,38 @@ class AdminProfileController extends Controller
             $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
             Image::make($image)->resize(225,225)->save('upload/admin_images/'.$name_gen);
             $save_url = 'upload/admin_images/'.$name_gen;
-
-        }
-        Admin::findOrFail($admin_id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'profile_photo_path' => $save_url,
-            'updated_at' => Carbon::now(),
-    
-        ]);
         
-        $notification = array(
-            'message' => 'Admin Profile Updated Succesfully',
-            'alert-type' => 'success'
-        );
+            Admin::findOrFail($admin_id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'profile_photo_path' => $save_url,
+                'updated_at' => Carbon::now(),
+        
+            ]);
+            
+            $notification = array(
+                'message' => 'Admin Profile Updated Succesfully',
+                'alert-type' => 'success'
+            );
+    
+            return redirect()->route('admin.profile')->with($notification);
 
-        return redirect()->route('admin.profile')->with($notification);
+        }else{
+            Admin::findOrFail($admin_id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'updated_at' => Carbon::now(),
+        
+            ]);
+            $notification = array(
+                'message' => 'Admin Profile Updated Succesfully',
+                'alert-type' => 'success'
+            );
+    
+            return redirect()->route('admin.profile')->with($notification);
+        }
 
     } 
 

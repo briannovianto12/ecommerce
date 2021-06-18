@@ -1,30 +1,24 @@
 @extends('frontend.main_master')
 @section('content')
 @section('title')
-Subcategory Product 
+Product Search Page 
 @endsection
 
 
 
 
-
+{{-- 
 <div class="breadcrumb">
   <div class="container">
     <div class="breadcrumb-inner">
       <ul class="list-inline list-unstyled">
         <li><a href="{{ url('/') }}">Home</a></li>
-        @foreach($breadsubcat as $item)
-        <li>{{ $item->category->category_name_en }}</li>
-        @endforeach
-        @foreach($breadsubcat as $item)
-        <li class='active'>{{ $item->subcategory_name_en }}</li>
-        @endforeach
       </ul>
     </div>
     <!-- /.breadcrumb-inner --> 
   </div>
   <!-- /.container --> 
-</div>
+</div> --}}
 <!-- /.breadcrumb -->
 <div class="body-content outer-top-xs">
   <div class='container'>
@@ -106,11 +100,11 @@ Subcategory Product
                 <!-- /.price-range-holder --> 
                 <a href="#" class="lnk btn btn-primary">Show Now</a> </div>
               <!-- /.sidebar-widget-body --> 
-            </div> --}}
+            </div>
             <!-- /.sidebar-widget --> 
             <!-- ============================================== PRICE SILDER : END ============================================== --> 
             <!-- ============================================== MANUFACTURES============================================== -->
-            {{-- <div class="sidebar-widget wow fadeInUp">
+            <div class="sidebar-widget wow fadeInUp">
               <div class="widget-header">
                 <h4 class="widget-title">Manufactures</h4>
               </div>
@@ -126,11 +120,11 @@ Subcategory Product
                 <!--<a href="#" class="lnk btn btn-primary">Show Now</a>--> 
               </div>
               <!-- /.sidebar-widget-body --> 
-            </div> --}}
+            </div>
             <!-- /.sidebar-widget --> 
             <!-- ============================================== MANUFACTURES: END ============================================== --> 
             <!-- ============================================== COLOR============================================== -->
-            {{-- <div class="sidebar-widget wow fadeInUp">
+            <div class="sidebar-widget wow fadeInUp">
               <div class="widget-header">
                 <h4 class="widget-title">Colors</h4>
               </div>
@@ -169,7 +163,7 @@ Subcategory Product
         <!-- == ==== SECTION – HERO === ====== -->
 
 
-
+        <h4><b>Total Search </b><span class="badge badge-danger" style="background: #FF0000;"> {{ count($products) }} </span>  Products  </h4>
 
         <div class="clearfix filters-container m-t-12">
           <div class="row">
@@ -455,7 +449,7 @@ Subcategory Product
             <div class="text-right">
               <div class="pagination-container">
                 <ul class="list-inline list-unstyled">
-                  {{ $products->links()  }}
+                  {{-- {{ $products->links()  }} --}}
                 </ul>
                 <!-- /.list-inline --> 
               </div>
@@ -481,7 +475,7 @@ Subcategory Product
 </div>
 <!-- /.body-content --> 
 
-
+<br><br>
 
 
 

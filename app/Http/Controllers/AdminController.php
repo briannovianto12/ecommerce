@@ -122,6 +122,63 @@ class AdminController extends Controller
 		return view('backend.user.all_user',compact('users'));
 	}
 
+    public function UserEdit($id){
+
+    	$users = User::findOrFail($id);
+    	return view('backend.user.user_edit',compact('users'));
+
+    }
+
+    public function UserUpdate(Request $request){
+
+    	$users_id = $request->id;
+    	$old_img = $request->old_image;
+
+    	if ($request->file('profile_photo_path')) {
+        $file = $request->file('profile_photo_path');
+        @unlink(public_path('upload/user_images/'.$data->profile_photo_path));
+        $filename = date('YmdHi').$file->getClientOriginalName(); //generate uniqe name
+        $file->move(public_path('upload/user_images'),$filename);
+
+
+	User::findOrFail($users_id)->update([
+		'name' => $request->name,
+		'email' => $request->email,
+		'phone' => $request->phone,
+		'profile_photo_path' => $filename,
+		'updated_at' => Carbon::now(),
+
+    	]);
+
+	    $notification = array(
+			'message' => 'User Updated Successfully',
+			'alert-type' => 'info'
+		);
+
+		return redirect()->route('all.users')->with($notification);
+
+    	}else{
+
+        User::findOrFail($users_id)->update([
+		'name' => $request->name,
+		'email' => $request->email,
+		'phone' => $request->phone,
+		'updated_at' => Carbon::now(),
+
+    	]);
+
+	    $notification = array(
+			'message' => 'User Updated Successfully',
+			'alert-type' => 'info'
+		);
+
+		return redirect()->route('all.users')->with($notification);
+
+    	} // end else 
+
+    } // end method 
+
+
     public function UserDelete($id){
 
 		$users = User::findOrFail($id);

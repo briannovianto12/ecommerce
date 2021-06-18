@@ -46,7 +46,7 @@
 		<td> <span class="badge badge-pill badge-success">Active</span></td>
 
 		<td>
- <a href=" " class="btn btn-info" title="Edit Data"><i class="fa fa-eye"></i> </a>
+ <a href="{{route('user.edit',$user->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-pencil-alt"></i> </a>
  <a href="{{ route('user.delete',$user->id) }}" class="btn btn-danger" title="Delete Data" id="delete">
  	<i class="fa fa-trash"></i></a>
 		</td>

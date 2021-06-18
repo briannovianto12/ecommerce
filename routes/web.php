@@ -195,7 +195,9 @@ Route::prefix('orders')->group(function(){
 Route::prefix('alluser')->group(function(){
 
     Route::get('/view', [AdminController::class, 'UserView'])->name('all.users');
+    Route::get('/edit/{id}', [AdminController::class, 'UserEdit'])->name('user.edit');
     Route::get('/delete/{id}', [AdminController::class, 'UserDelete'])->name('user.delete');
+    Route::post('/update', [AdminController::class, 'UserUpdate'])->name('user.update');
     
     
     });
@@ -222,4 +224,5 @@ Route::prefix('adminrole')->group(function(){
     
 });
 
-
+// Product Search
+Route::post('/search', [IndexController::class, 'ProductSearch'])->name('product.search');

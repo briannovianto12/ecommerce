@@ -8,6 +8,7 @@ use Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\SubCategory;
 use App\Models\Slider;
 use App\Models\Product;
 use App\Models\MultiImage;
@@ -153,7 +154,9 @@ class IndexController extends Controller
 
         $products = Product::where('status',1)->where('subcategory_id',$subcat_id)->orderBy('id','DESC')->paginate(9);
         $categories = Category::orderBy('category_name_en','ASC')->get();
-        return view('frontend.product.subcategory_view',compact('products','categories'));
+        $breadsubcat = SubCategory::with(['category'])->where('id',$subcat_id)->get();
+
+        return view('frontend.product.subcategory_view',compact('products','categories','breadsubcat'));
     }
 
     public function ProductViewAjax($id){
@@ -210,6 +213,15 @@ class IndexController extends Controller
     		return response()->json(['success' => 'Successfully Added on Your Cart']);
     	}
 
-    } // end mehtod 
+    } // end mehtod
+    
+    public function ProductSearch(Request $request){
+
+        $item = $request->search;
+        $products = Product::where('product_name_en','LIKE',"%$item%")->get();
+        $categories = Category::orderBy('category_name_en','ASC')->get();
+        return view('frontend.product.search',compact('products','categories'));
+
+    }
 
 }
