@@ -6,6 +6,9 @@
         <div class="header-top-inner">
           <div class="cnt-account">
             <ul class="list-unstyled">
+              <li><a href="{{ route('request.seller') }}"><i class=""></i>
+                @if(session()->get('language') == 'indonesia' ) Menjadi Seller @else Request Seller @endif 
+                </a></li>
               <li><a href="{{ route('mycart') }}"><i class="icon fa fa-shopping-cart"></i>
                 @if(session()->get('language') == 'indonesia' ) Keranjang Saya @else My Cart @endif 
                 </a></li>

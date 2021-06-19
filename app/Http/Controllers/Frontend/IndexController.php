@@ -14,6 +14,9 @@ use App\Models\Product;
 use App\Models\MultiImage;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RequestSeller;
+use App\Mail\UserSeller;
 
 class IndexController extends Controller
 {
@@ -221,6 +224,31 @@ class IndexController extends Controller
         $products = Product::where('product_name_en','LIKE',"%$item%")->get();
         $categories = Category::orderBy('category_name_en','ASC')->get();
         return view('frontend.product.search',compact('products','categories'));
+
+    }
+
+    public function RequestSeller(){
+        return view('frontend.request_seller');
+
+    }
+
+    public function BecomeSeller(Request $request){
+        
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+        ];
+        
+        Mail::to('support@bmart.com')->send(new RequestSeller($data));
+        Mail::to($request->email)->send(new UserSeller($data));
+
+        $notification = array(
+            'message' => 'Your Request Successfully Submited, Waiting Approved by Admin',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->to('/')->with($notification);
 
     }
 

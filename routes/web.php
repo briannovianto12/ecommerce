@@ -226,3 +226,6 @@ Route::prefix('adminrole')->group(function(){
 
 // Product Search
 Route::post('/search', [IndexController::class, 'ProductSearch'])->name('product.search');
+// Request to be a Seller
+Route::get('/request/seller', [IndexController::class, 'RequestSeller'])->name('request.seller');
+Route::post('/become/seller', [IndexController::class, 'BecomeSeller'])->name('become.seller');
