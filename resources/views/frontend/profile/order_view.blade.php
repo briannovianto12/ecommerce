@@ -15,7 +15,7 @@ My Order Page
      
             <div class="col-md-9">
      
-             <div class="table-responsive" style="margin-top:20px; margin-bottom:20px;  ">
+             <div class="table-responsive" style="margin-top:30px; margin-bottom:20px;  ">
                <table class="table">
                  <tbody>
      
@@ -93,5 +93,5 @@ My Order Page
     </div>
 </div>
 
-
+<br><br><br><br><br><br><br>
 @endsection

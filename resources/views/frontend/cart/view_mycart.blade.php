@@ -55,7 +55,7 @@ My Cart Page
 				<tr>
 					<td>
 						<div class="cart-checkout-btn pull-right">
-							<a href="{{ route('checkout') }}" type="submit" class="btn btn-primary checkout-btn">PROCCED TO CHECKOUT</a>
+							<a href="{{ route('checkout') }}" type="submit" class="btn btn-primary checkout-btn">PROCEED TO CHECKOUT</a>
 
 						</div>
 					</td>
@@ -77,5 +77,5 @@ My Cart Page
 
 
 
-
+<br><br><br><br><br>
 @endsection

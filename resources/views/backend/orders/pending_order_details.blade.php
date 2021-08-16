@@ -134,7 +134,8 @@
                  
                                 @elseif($order->status == 'shipped')
                                  <a href="{{ route('shipped.delivered',$order->id) }}" class="btn btn-block btn-success" id="delivered">Delivered Order</a>
-                                @endif   
+                                 @elseif($order->status == 'canceled')
+                                 @endif   
                             </th>
                             </tr>
 

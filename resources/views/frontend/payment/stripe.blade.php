@@ -173,5 +173,5 @@ Stripe Payment Page
     form.submit();
     }
 </script>
-
+<br><br><br><br><br><br><br><br><br>
 @endsection

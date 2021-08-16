@@ -853,7 +853,7 @@ body.dark-skin {
   color: #ffffff; }
 
 .bg-gradient-primary, .theme-primary .bg-gradient-primary, .theme-primary .art-bg {
-    background: white !important
+    background: #f0f0f0 !important
 }
 
 

@@ -37,7 +37,6 @@ class UserController extends Controller
         $request->validate([
             'summary' => 'required',
             'comment' => 'required',
-            'rating' => 'rating',
         ]);
         
         Review::insert([
@@ -62,7 +61,7 @@ class UserController extends Controller
 
     public function ReviewView(){
 
-        $review = Review::where('status',0)->orderBy('id','DESC')->get();
+        $review = Review::where('status',1)->orderBy('id','DESC')->get();
         return view('backend.review.review_view',compact('review'));
 
     }

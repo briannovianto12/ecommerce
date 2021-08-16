@@ -26,6 +26,7 @@
 					  <table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
+								<th>Rating</th>
 								<th>Summary  </th>
 								<th>Comment </th>
 								<th>User </th>
@@ -38,6 +39,7 @@
 						<tbody>
 	 @foreach($review as $item)
 	 <tr>
+		 <td> {{ $item->rating }}</td>
 		<td> {{ $item->summary }}  </td>
 		<td> {{ $item->comment }}  </td>
 		<td>  {{ $item->user->name }}  </td>
@@ -51,8 +53,8 @@
 		@endif
 
 		  </td>
-
-		{{-- <td width="25%">
+{{-- 
+		<td width="25%">
   <a href="{{ route('review.approve',$item->id) }}" class="btn btn-danger">Approve </a>
 		</td> --}}
 

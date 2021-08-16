@@ -142,7 +142,7 @@
                                         $discount = (($product->selling_price - $amount)/$product->selling_price) * 100;
                                     @endphp
 
-									<div class="col-sm-6">
+									<div class="col-sm-12">
 										<div class="price-box">
                                             @if ($product->discount_price == NULL)
 											    <span class="price">{{ $total_rupiah }}</span>
@@ -242,7 +242,7 @@
 								
 								<div id="description" class="tab-pane in active">
 									<div class="product-tab">
-										<p class="text">@if(session()->get('language') == 'indonesia' ) {!! $product->long_descp_ind !!} @else {!! $product->long_descp_en !!} @endif </p>
+										<pre style="background-color: white; w" class="text">@if(session()->get('language') == 'indonesia' ) {!! $product->long_descp_ind !!} @else {!! $product->long_descp_en !!} @endif </pre>
 									</div>	
 								</div><!-- /.tab-pane -->
 

@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="{{ asset('backend/css/skin_color.css') }}">	
 
 </head>
-<body class="hold-transition theme-primary bg-gradient-primary">
+<body class="hold-transition dark-skin theme-primary fixed ">
 	
 	<div class="container h-p100">
 		<div class="row align-items-center justify-content-md-center h-p100">	
@@ -27,7 +27,8 @@
 				<div class="row justify-content-center no-gutters">
 					<div class="col-lg-4 col-md-5 col-12">
 						<div class="content-top-agile p-10">
-							<h2>Welcome to Admin Dashboard</h2>
+							<h2>Welcome to B-Mart </h2>
+							<h2>Admin Dashboard</h2>
 							<p>Sign in to start your session</p>							
 						</div>
 						<div class="p-30 rounded30 box-shadowed b-2 b-dashed">
@@ -60,9 +61,6 @@
 									</div>
 									<!-- /.col -->
 									<div class="col-6">
-									 <div class="fog-pwd text-right">
-										<a href="{{ route('password.request') }}" class=" hover-info"><i class="ion ion-locked"></i> Forgot Password</a><br>
-									  </div>
 									</div>
 									<!-- /.col -->
 									<div class="col-12 text-center">

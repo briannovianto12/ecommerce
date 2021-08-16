@@ -41,5 +41,5 @@ Change Password Page
     </div>
 </div>
 
-
+<br><br><br><br><br><br><br><br><br> 
 @endsection

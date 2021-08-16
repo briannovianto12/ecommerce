@@ -79,5 +79,5 @@ Cash on Delivery Payment Page
 		</div><!-- /.checkout-box -->
 	</div><!-- /.container -->
 </div><!-- /.body-content -->
-
+<br><br><br><br><br><br><br><br><br> 
 @endsection

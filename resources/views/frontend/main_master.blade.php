@@ -69,6 +69,8 @@
 <script src="{{ asset('frontend/assets/js/autoNumeric.js') }}"></script>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ asset('backend/js/code.js') }}"></script>
+
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -355,7 +357,7 @@
             var rows = ""
             $.each(response.carts, function(key,value){
                 rows += `<tr>
-                <td class="col-md-2"><img src="/${value.options.image} " alt="img" style="height: 200px; width: 200px;"></td>
+                <td class="col-md-2"><img src="/${value.options.image} " alt="img" style="height: 150px; width: 150px;"></td>
                 
                 <td class="col-md-3">
                     <div class="product-name" ><h4><strong>${value.name}</strong></h4></div>

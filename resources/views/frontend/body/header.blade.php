@@ -4,7 +4,43 @@
     <div class="top-bar animate-dropdown">
       <div class="container">
         <div class="header-top-inner">
-          <div class="cnt-account">
+          <div class="cnt-block">
+            {{-- <li> --}}
+              @auth
+              {{-- <a href="{{ route('dashboard') }}"><i class="icon fa fa-user"></i>
+                @if(session()->get('language') == 'indonesia' ) Akun Saya @else My Account @endif 
+              </a> --}}
+              <ul class="list-unstyled list-inline">
+                <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">
+                  @if(session()->get('language') == 'indonesia' ) Akun Saya @else My Account @endif 
+                </span><b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    @if(session()->get('language') == 'indonesia')
+                    <li><a href="{{ route('dashboard') }}">Profile Saya</a></li>
+                    <li><a href="{{ route('user.profile') }}">Update Profile</a></li>
+                    <li><a href="{{ route('my.orders') }}">Order Saya</a></li>
+                    <li><a href="{{ route('user.change.password') }}">Ganti Password</a></li>
+                    <li><a href="{{ route('user.logout') }}">Keluar</a></li>
+                    @else
+                    <li><a href="{{ route('dashboard') }}">My Profile</a></li>
+                    <li><a href="{{ route('user.profile') }}">Update Profile</a></li>
+                    <li><a href="{{ route('my.orders') }}">My Order</a></li>
+                    <li><a href="{{ route('user.change.password') }}">Change Password</a></li>
+                    <li><a href="{{ route('user.logout') }}">Logout</a></li>
+                    @endif
+                  </ul>
+                </li>
+              </ul>
+              @else 
+              <div class="cnt-account" >
+              <a href="{{ route('login') }}" style="color:rgba(255,255,255,0.8);"><i class="icon fa fa-lock"></i>
+                @if(session()->get('language') == 'indonesia' ) Masuk @else Login @endif 
+              </a>
+              </div>
+              @endauth
+            {{-- </li> --}}
+          </div>
+          <div class="cnt-account" style="margin-right: 10px;">
             <ul class="list-unstyled">
               <li><a href="{{ route('request.seller') }}"><i class=""></i>
                 @if(session()->get('language') == 'indonesia' ) Menjadi Seller @else Request Seller @endif 
@@ -12,20 +48,35 @@
               <li><a href="{{ route('mycart') }}"><i class="icon fa fa-shopping-cart"></i>
                 @if(session()->get('language') == 'indonesia' ) Keranjang Saya @else My Cart @endif 
                 </a></li>
-              <li>
+              {{-- <li>
                 @auth
                 <a href="{{ route('dashboard') }}"><i class="icon fa fa-user"></i>
                   @if(session()->get('language') == 'indonesia' ) Akun Saya @else My Account @endif 
                 </a>
+                <ul class="list-unstyled list-inline">
+                  <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">
+                    @if(session()->get('language') == 'indonesia' ) Akun Saya @else My Account @endif 
+                  </span><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      @if(session()->get('language') == 'indonesia')
+                      <li><a href="{{ route('dashboard') }}">My Profile</a></li>
+                      @else
+                      <li><a href="{{ route('dashboard') }}">Profile Saya</a></li>
+                      @endif
+                    </ul>
+                  </li>
+                </ul>
                 @else  
                 <a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>
                   @if(session()->get('language') == 'indonesia' ) Masuk @else Login @endif 
                   </a>
                 @endauth
-              </li>
+              </li> --}}
             </ul>
           </div>
           <!-- /.cnt-account -->
+
+
           
           <div class="cnt-block">
             <ul class="list-unstyled list-inline">

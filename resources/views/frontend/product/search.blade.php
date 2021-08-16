@@ -5,7 +5,11 @@ Product Search Page
 @endsection
 
 
-
+<style>
+  .checked {
+    color: orange;
+  }
+  </style>
 
 {{-- 
 <div class="breadcrumb">
@@ -242,6 +246,9 @@ Product Search Page
 
 
 @foreach($products as $product)
+@php 
+$avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+@endphp
   <div class="col-sm-6 col-md-4 wow fadeInUp">
     <div class="products">
       <div class="product">
@@ -267,11 +274,55 @@ Product Search Page
 
         </div>
         <!-- /.product-image -->
-
         <div class="product-info text-left">
           <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en ) }}">
           	@if(session()->get('language') == 'indonesia') {{ $product->product_name_ind }} @else {{ $product->product_name_en }} @endif</a></h3>
-          <div class="rating rateit-small"></div>
+            <div class="">
+              {{-- <div class="rating-reviews m-t-20"> --}}
+                {{-- <div class="row">  --}}
+                  {{-- <div class="col-sm-3"> --}}
+                    @if($avarage == 0)
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    @elseif($avarage == 1 || $avarage < 2)
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    @elseif($avarage == 2 || $avarage < 3)
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    @elseif($avarage == 3 || $avarage < 4)
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    
+                    @elseif($avarage == 4 || $avarage < 5)
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    @elseif($avarage == 5 || $avarage < 5)
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    @endif
+                  {{-- </div> --}}
+                {{-- </div><!-- /.row -->		 --}}
+              {{-- </div><!-- /.rating-reviews --> --}}
+            </div>
           <div class="description"></div>
 
 
@@ -344,7 +395,6 @@ Product Search Page
 
 
  @foreach($products as $product)
-
 <div class="category-product-inner wow fadeInUp">
   <div class="products">
     <div class="product-list product">
@@ -481,5 +531,5 @@ Product Search Page
 
 
 
-
+<br><br><br><br><br><br><br><br><br> <br><br>
 @endsection

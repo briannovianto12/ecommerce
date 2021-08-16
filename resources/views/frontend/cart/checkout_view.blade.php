@@ -71,8 +71,8 @@ My Checkout Page
                             <input type="text" name="post_code" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Post Code" required="">
 					    </div>
                         <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1"><b>Notes</b> <span class="text-danger">*</span></label>
-                            <textarea name="notes" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Notes" cols="30" rows="5" required=""></textarea>
+                            <label class="info-title" for="exampleInputEmail1"><b>Notes</b> </label>
+                            <textarea name="notes" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Notes" cols="30" rows="5" ></textarea>
 					    </div>
 					
 				</div>	

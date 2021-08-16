@@ -37,8 +37,8 @@
 
                                             <td width="30%">
                                                 <a href="{{ route('pending.order.details',$item->id) }}" class="btn btn-primary " title="Edit Data"><i class="fa fa-eye"></i> </a>
-                                                <a href="{{ route('slider.delete',$item->id) }}" class="btn btn-danger " title="Delete Data" id="delete">
-                                                    <i class="fa fa-trash"></i></a>
+                                                <a href="{{ route('order.delete',$item->id) }}" class="btn btn-danger " title="Delete Data" id="cancel">
+                                                    <i class="fa fa-times"></i></a>
                                             </td>                     
                                         </tr>
                                     @endforeach

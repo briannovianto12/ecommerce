@@ -73,7 +73,7 @@ class OrderController extends Controller
 
 	// Cancel Orders 
 	public function CancelOrders(){
-		$orders = Order::where('status','cancel')->orderBy('id','DESC')->get();
+		$orders = Order::where('status','canceled')->orderBy('id','DESC')->get();
 		return view('backend.orders.cancel_order',compact('orders'));
 
 	} // end mehtod 
@@ -155,6 +155,19 @@ class OrderController extends Controller
   
   
       } // end method
+
+      public function OrderDelete($id){
+
+        Order::findOrFail($id)->update(['status' => 'canceled']);
+
+        $notification = array(
+            'message' => 'Order Canceled Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
+    } 
   
   
 }

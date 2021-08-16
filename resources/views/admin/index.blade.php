@@ -20,7 +20,7 @@
                 <div class="box overflow-hidden pull-up">
                     <div class="box-body">							
                         <div class="icon bg-primary-light rounded w-60 h-60">
-                            <i class="text-primary mr-0 font-size-24 mdi mdi-account-multiple"></i>
+                            <i class="text-primary mr-0 font-size-24 fas fa-money-check-alt"></i>
                         </div>
                         <div>
                             <p class="text-mute mt-20 mb-0 font-size-16">Today's Sale</p>
@@ -34,7 +34,7 @@
                 <div class="box overflow-hidden pull-up">
                     <div class="box-body">							
                         <div class="icon bg-warning-light rounded w-60 h-60">
-                            <i class="text-warning mr-0 font-size-24 mdi mdi-car"></i>
+                            <i class="text-warning mr-0 font-size-24 fas fa-money-check-alt"></i>
                         </div>
                         <div>
                             <p class="text-mute mt-20 mb-0 font-size-16">Monthly Sale </p>
@@ -48,7 +48,7 @@
                 <div class="box overflow-hidden pull-up">
                     <div class="box-body">							
                         <div class="icon bg-info-light rounded w-60 h-60">
-                            <i class="text-info mr-0 font-size-24 mdi mdi-sale"></i>
+                            <i class="text-info mr-0 font-size-24 fas fa-money-check-alt"></i>
                         </div>
                         <div>
                             <p class="text-mute mt-20 mb-0 font-size-16">Yearly Sale </p>
@@ -61,7 +61,7 @@
                 <div class="box overflow-hidden pull-up">
                     <div class="box-body">							
                         <div class="icon bg-danger-light rounded w-60 h-60">
-                            <i class="text-danger mr-0 font-size-24 mdi mdi-phone-incoming"></i>
+                            <i class="text-danger mr-0 font-size-24 fas fa-cart-arrow-down"></i>
                         </div>
                         <div>
                             <p class="text-mute mt-20 mb-0 font-size-16">Pending Orders </p>

@@ -25,7 +25,7 @@
         @csrf
         <div class="col-md-6 col-md-6"style="float:none;margin:auto;">
             <div class="form-group">
-                <label class="info-title" for="exampleInputPassword1">Username <span>*</span></label>
+                <label class="info-title" for="exampleInputPassword1">Name <span>*</span></label>
                 <input type="text" id="name" name="name" class="form-control unicase-form-control text-input"  >
             </div>
             <div class="form-group">
